@@ -107,22 +107,24 @@ function xAdmin.Core.GetID64(info, admin)
 	return nil
 end
 
+-- I stole this from somewhere but I honestly can't find where. If you were the original creator of this snippet OR know where it's from, please contact me in any way possible <3
 function xAdmin.Core.FormatArguments(args)
-	local startk, endk
+	local Start, End = nil, nil
+
 	for k, v in pairs(args) do
-		if (v[1] == "\"") then
-			startk = k
-		elseif (startk and v[#v] == "\"") then
-			endk = k
+		if (string.sub(v, 1, 1) == "\"") then
+			Start = k
+		elseif Start and (string.sub(v, string.len(v), string.len(v)) == "\"") then
+			End = k
 			break
 		end
 	end
 
-	if (startk and endk) then
-		args[startk] = string.sub(table.concat(args, " ", startk, endk), 2, -2)
-		local num = endk - startk
-		for i=1, num do
-			table.remove(args, startk + 1)
+	if Start and End then
+		args[Start] = string.Trim(table.concat(args, " ", Start, End), "\"")
+
+		for i=1, (End - Start) do
+			table.remove(args, Start + 1)
 		end
 		
 		args = xAdmin.Core.FormatArguments(args)

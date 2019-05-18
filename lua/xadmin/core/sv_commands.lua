@@ -37,7 +37,7 @@ concommand.Add("xadmin", function(ply, cmd, args, argStr)
 end)
 
 hook.Add("PlayerSay", "xAdminChatCommands", function(ply, msg)
-	if msg[1] == xAdmin.Config.Prefix then
+	if string.sub(msg, 1, 1) == xAdmin.Config.Prefix then
 		args = xAdmin.Core.FormatArguments(string.Explode(" ", msg))
 		args[1] = string.sub(args[1], 2)
 
