@@ -141,11 +141,23 @@ function xAdmin.Core.Msg(args, target)
 			table.insert(args, k+2, Color(215, 215, 215))
 		end
 	end
-	net.Start("xAdminChatMessage")
-		net.WriteTable(args)
-	if target then
-		net.Send(target)
+	if(!IsValid(target)) then
+		local NextColor = Color(255, 255, 255, 255)
+		for k,v in pairs(args) do
+			if(type(v) == "table") then
+				NextColor = v
+			else
+				MsgC(NextColor, v)
+			end
+		end
+		MsgC("\n")
 	else
-		net.Broadcast()
+		net.Start("xAdminChatMessage")
+			net.WriteTable(args)
+		if target then
+			net.Send(target)
+		else
+			net.Broadcast()
+		end
 	end
 end
