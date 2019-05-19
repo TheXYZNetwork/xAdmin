@@ -2,11 +2,17 @@
 --- # KICK
 --- #
 xAdmin.Core.RegisterCommand("kick", "Kicks the target player", 30, function(admin, args)
-	if not args or not args[1] then return end
+	if(!IsValid(admin)) then
+		admin = xAdmin.Console
+	end
+	if not args or not args[1] then
+		xAdmin.Core.Msg({"Please provide a valid target."}, admin)
+		return
+	end
 
 	local target = xAdmin.Core.GetUser(args[1], admin)
 	if not IsValid(target) then
-        xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", Color(255, 255, 255), "Please provide a valid target. The following was not recognised: "..args[1]}, admin)
+        xAdmin.Core.Msg({"Please provide a valid target. The following was not recognised: ", Color(138,43,226), args[1]}, admin)
 		return
 	end
 
@@ -19,11 +25,11 @@ xAdmin.Core.RegisterCommand("kick", "Kicks the target player", 30, function(admi
     end
 
     if target:HasPower(admin:GetGroupPower()) then
-        xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", Color(255, 255, 255), target, " out powers you and thus you cannot kick them."}, admin)
+        xAdmin.Core.Msg({target, " out powers you and thus you cannot kick them."}, admin)
         return
     end
 
-    xAdmin.Core.Msg({target:Name(), " has been kicked by ", admin, " for: "..reason})
+    xAdmin.Core.Log({target, " has been kicked by ", admin, " for the reason '", Color(138,43,226), reason, Color(255, 255, 255), "'."})
     target:Kick(reason)
 end)
 
@@ -31,11 +37,17 @@ end)
 --- # BAN
 --- #
 xAdmin.Core.RegisterCommand("ban", "Bans the target player", 40, function(admin, args)
-	if not args or not args[1] then return end
+	if(!IsValid(admin)) then
+		admin = xAdmin.Console
+	end
+	if not args or not args[1] then
+		xAdmin.Core.Msg({"Please provide a valid target."}, admin)
+		return
+	end
 
-	local target, targetPly = xAdmin.Core.GetID64(args[1], admin)
+	local target,targetPly = xAdmin.Core.GetID64(args[1], admin)
 	if not target then
-        xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", Color(255, 255, 255), "Please provide a valid target. The following was not recognised: "..args[1]}, admin)
+        xAdmin.Core.Msg({"Please provide a valid target. The following was not recognised: ", Color(138,43,226), args[1]}, admin)
 		return
 	end
 
@@ -70,7 +82,7 @@ xAdmin.Core.RegisterCommand("ban", "Bans the target player", 40, function(admin,
 
     if IsValid(targetPly) then
         if targetPly:HasPower(admin:GetGroupPower()) then
-        xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", Color(255, 255, 255), targetPly, " out powers you and thus you cannot ban them."}, admin)
+        	xAdmin.Core.Msg({target, " out powers you and thus you cannot kick them."}, admin)
             return
         end
 
@@ -78,17 +90,22 @@ xAdmin.Core.RegisterCommand("ban", "Bans the target player", 40, function(admin,
         targetPly:Kick(string.format(xAdmin.Config.BanFormat, admin:Name(), (time==0 and "Permanent") or string.NiceTime(time*60), reason))
     end
 
-    xAdmin.Core.Msg({admin, " has banned ", ((IsValid(targetPly) and targetPly:Name()) or target), " for "..((time==0 and "permanent") or string.NiceTime(time*60)).." with the reason: "..reason})
+	if(time==0) then
+    	xAdmin.Core.Log({admin, " has banned ", ((IsValid(targetPly) and targetPly:Name()) or target), Color(138,43,226), " permanently", Color(255, 255, 255), " for the reason: '", Color(138,43,226), reason, "'."})
+	else
+		xAdmin.Core.Log({admin, " has banned ", ((IsValid(targetPly) and targetPly:Name()) or target), " for ", Color(138,43,226), string.NiceTime(time*60), Color(255, 255, 255), " for the reason: '", Color(138,43,226), reason, "'."})
+	end
     xAdmin.Database.CreateBan(target, (IsValid(targetPly) and targetPly:Name()) or "Unknown", admin:SteamID64(), admin:Name(), reason or "No reason given", time*60)
 end)
 
 hook.Add("CheckPassword", "xAdminCheckBanned", function(steamID64)
     xAdmin.Database.IsBanned(steamID64, function(data)
         if data[1] then
-            if data[1]._end == 0 then
+			local Time = tonumber(data[1]._end)
+            if(Time == 0) then
                 game.KickID(util.SteamIDFrom64(steamID64), string.format(xAdmin.Config.BanFormat, data[1].admin, "Permanent", data[1].reason))
-            elseif (data[1].start + data[1]._end) > os.time() then
-                game.KickID(util.SteamIDFrom64(steamID64), string.format(xAdmin.Config.BanFormat, data[1].admin, string.NiceTime((data[1].start+data[1]._end)-os.time()), data[1].reason))
+            elseif (tonumber(data[1].start) + Time) > os.time() then
+                game.KickID(util.SteamIDFrom64(steamID64), string.format(xAdmin.Config.BanFormat, data[1].admin, string.NiceTime((tonumber(data[1].start)+Time)-os.time()), data[1].reason))
             else
                 xAdmin.Database.DestroyBan(steamID64)
             end
@@ -99,15 +116,21 @@ end)
 --- #
 --- # UNBAN
 --- #
-xAdmin.Core.RegisterCommand("unban", "Unbans the target id", 50, function(admin, args)
-    if not args or not args[1] then return end
+xAdmin.Core.RegisterCommand("unban", "Unbans the target SteamID", 50, function(admin, args)
+	if(!IsValid(admin)) then
+		admin = xAdmin.Console
+	end
+	if not args or not args[1] then
+		xAdmin.Core.Msg({"Please provide a valid SteamID."}, admin)
+		return
+	end
 
     local target, targetPly = xAdmin.Core.GetID64(args[1], admin)
     if not target then
-        xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", Color(255, 255, 255), "Please provide a valid target. The following was not recognised: "..args[1]}, admin)
+        xAdmin.Core.Msg({"Please provide a valid target. The following was not recognised: ", Color(138,43,226), args[1]}, admin)
         return
     end
 
-    xAdmin.Core.Msg({admin, " has unbanned ".. target})
+    xAdmin.Core.Log({admin, " has unbanned ", Color(138,43,226), target, Color(255, 255, 255), "."})
     xAdmin.Database.DestroyBan(target)
 end)

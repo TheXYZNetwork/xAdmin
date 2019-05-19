@@ -43,7 +43,7 @@ function xAdmin.Core.GetUser(info, admin)
 	if info == "" then
 		return nil
 	end
-	
+
 	if IsValid(admin) then
 		if info == "^" then
 			return admin
@@ -126,38 +126,76 @@ function xAdmin.Core.FormatArguments(args)
 		for i=1, (End - Start) do
 			table.remove(args, Start + 1)
 		end
-		
+
 		args = xAdmin.Core.FormatArguments(args)
 	end
-	
+
 	return args
 end
 
+
 function xAdmin.Core.Msg(args, target)
-	for k, v in pairs(args) do
-		if istable(v) and v.isConsole then
-			args[k]= v:Name()
-			table.insert(args, k, Color(0, 0, 0))
-			table.insert(args, k+2, Color(215, 215, 215))
+	if(!target or !IsValid(target)) then
+		xAdmin.Core.Print(args)
+	end
+	if(target.isConsole) then
+		xAdmin.Core.Print(args)
+	end
+	local argtable = {}
+	for k,v in pairs(args) do
+		if(type(v) == "table") then
+			if(v.isConsole) then
+				table.insert(argtable, Color(188, 188, 188))
+				table.insert(argtable, "Console")
+				table.insert(argtable, Color(255, 255, 255))
+			else
+				table.insert(argtable, v)
+			end
+		else
+			table.insert(argtable, v)
 		end
 	end
-	if(!IsValid(target)) then
-		local NextColor = Color(255, 255, 255, 255)
-		for k,v in pairs(args) do
-			if(type(v) == "table") then
-				NextColor = v
+
+	net.Start("xAdminChatMessage")
+	net.WriteTable(argtable)
+	net.Send(target)
+end
+
+function xAdmin.Core.Log(args)
+	if(!args) then return end
+	local argtable = {}
+	for k,v in pairs(args) do
+		if(type(v) == "table") then
+			if(v.isConsole) then
+				table.insert(argtable, Color(188, 188, 188))
+				table.insert(argtable, "Console")
+				table.insert(argtable, Color(255, 255, 255))
 			else
-				MsgC(NextColor, v)
+				table.insert(argtable, v)
 			end
-		end
-		MsgC("\n")
-	else
-		net.Start("xAdminChatMessage")
-			net.WriteTable(args)
-		if target then
-			net.Send(target)
 		else
-			net.Broadcast()
+			table.insert(argtable, v)
 		end
+	end
+
+	net.Start("xAdminChatMessage")
+	net.WriteTable(argtable)
+	net.Broadcast()
+
+	xAdmin.Core.Print(argtable)
+end
+
+function xAdmin.Core.AdminChat(args, ply)
+	if(!args) then return end
+	if(!ply) then return end
+	local tablearg = {}
+	table.insert(tablearg, ply)
+	table.insert(tablearg, ": ")
+	table.insert(tablearg, string.sub(args, 2, #args))
+
+	for k,v in pairs(xAdmin.AdminChat) do
+		net.Start("xAdminAChatMessage")
+		net.WriteTable(tablearg)
+		net.Send(v)
 	end
 end

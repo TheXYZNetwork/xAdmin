@@ -14,7 +14,7 @@ function xAdmin.Core.IsCommand(arg)
 end
 
 for _, files in SortedPairs(file.Find("xadmin/commands/*.lua", "LUA"), true) do
-	print("Loading command file:", files)
+	xAdmin.Core.Print({"Loading command file: ", files})
     include("xadmin/commands/" .. files)
 end
 
