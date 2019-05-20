@@ -7,7 +7,7 @@ function xAdmin.Database.Connect()
 
 	-- The SQL credentials.
 	-- If you're running multiple servers it is suggested that xAdmin has it's own database that all the server's use for just xAdmin. That way they can share the ban_archive for things like ban walls
-	xAdmin.Database.Connection = mysqloo.connect("1.1.1.1", "user", "pa$$w0rd", "xadmin_databa", 3306)
+	xAdmin.Database.Connection = mysqloo.connect("1.1.1.1", "user", "pa$$w0rd", "xadmin_database", 3306)
 
 
 
