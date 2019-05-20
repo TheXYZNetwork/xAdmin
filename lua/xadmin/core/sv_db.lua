@@ -2,7 +2,17 @@
 require("mysqloo")
 function xAdmin.Database.Connect()
 	if xAdmin.Database.Connection then return end
-	xAdmin.Database.Connection = mysqloo.connect("1.1.1.1", "user_name", "pa$$w0rd", "database", 3306) -- If you're running multiple servers it is suggested that xAdmin has it's own database that all the server's use for just xAdmin. That way they can share the ban_archive for things like ban walls
+
+
+
+	-- The SQL credentials.
+	-- If you're running multiple servers it is suggested that xAdmin has it's own database that all the server's use for just xAdmin. That way they can share the ban_archive for things like ban walls
+	xAdmin.Database.Connection = mysqloo.connect("217.69.5.169", "dev_user", "lHzzqWTCWZJaeKyd", "xadmin_master", 3306)
+
+
+
+
+
 	xAdmin.Database.Connection.onConnected = function()
 		print("=========================")
 		print("xAdmin database connected")

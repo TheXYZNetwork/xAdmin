@@ -11,8 +11,17 @@ xAdmin.AdminChat = {}
 print("Loading xAdmin")
 
 xAdmin.Info.Version = "1.0"
+
+
+
+-- The table prefix used when making the unique tables. If you're running multiple servers this should be unique else they will share data
 xAdmin.Info.Name = "svr1"
+-- The unique name of this server. This will be used as a unique identifier in the bans archive
 xAdmin.Info.FullName = "Server 1"
+
+
+
+
 
 local path = "xadmin/"
 if SERVER then
