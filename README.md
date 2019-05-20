@@ -14,8 +14,13 @@ Systems like [ULX](https://github.com/TeamUlysses/ulx) have the goal to be as fe
 ## A quick rundown
 xAdmin is completely chat/console based when being interacted with in-game. This is to keep things as simple as possible. Like other popular admin systems, commands are (by default) prefixed with ``!``. Running a command like ``!god Owain`` through chat will target and god the user ``Owain``. All commands can also be run through the console with ``xadmin <command> <arguments>``. When running chat commands, all words after the initial words are considered individual arguments. In order to pass multiple words as 1 argument, you can surround them in ``"``. This will pass the collections of words as a single argument.
 
+## Install/Config
+You can find a guide on installing and configuring xAdmin [here](https://github.com/OwjoTheGreat/xadmin/wiki/Getting-Started). It should give you the general idea of how everything works along with a simple guide on how to install and configure it.
+
 ## Documentation
-I'll get to this soon, I promise <3
+I have created a [simple wiki](https://github.com/OwjoTheGreat/xadmin/wiki) that documents every class and function that xAdmin has. It will show you the arguments they take and what they return. Some functions/classes may have notes informing you of extra information needed. For example: The ban function will not kick the user if they're online.
+
+I have also [documented](https://github.com/OwjoTheGreat/xadmin/wiki/Commands) all the default commands that come with xAdmin along with the arguments they take and what they do.
 
 ## Contributions
 I encourage you to contribute to this. If it's a small bug fix or adding a command, all contributions are welcome. If you spot a better way of doing something, submit it! The best way to improve shit is through collaboration. 
