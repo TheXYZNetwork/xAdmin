@@ -37,7 +37,7 @@ xAdmin.Config.AdminChatColor = Color(0,150,255)
 
 
 /*===============
-Foramtting Config
+Formatting Config
 =================*/
 
 -- The chat prefix
