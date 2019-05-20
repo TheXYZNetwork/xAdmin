@@ -7,7 +7,7 @@ function xAdmin.Database.Connect()
 
 	-- The SQL credentials.
 	-- If you're running multiple servers it is suggested that xAdmin has it's own database that all the server's use for just xAdmin. That way they can share the ban_archive for things like ban walls
-	xAdmin.Database.Connection = mysqloo.connect("1.1.1.1", "user", "pa$$w0rd", "xadmin_database", 3306)
+	xAdmin.Database.Connection = mysqloo.connect("1.1.1.1", "user", "Pa$$W0rd", "xadmin_master", 3306)
 
 
 
@@ -20,13 +20,13 @@ function xAdmin.Database.Connect()
 		print("Checking and creating the following tables:")
 
 		print(xAdmin.Info.Name.."_active_bans")
-		xAdmin.Database.Query("CREATE TABLE IF NOT EXISTS "..xAdmin.Info.Name.."_active_bans(userid VARCHAR(32) NOT NULL PRIMARY KEY, user TEXT NOT NULL, adminid VARCHAR(32) NOT NULL, admin TEXT NOT NULL, reason TEXT NOT NULL, start INT(11) NOT NULL, _end INT(11) NOT NULL)")
+		xAdmin.Database.Query("CREATE TABLE IF NOT EXISTS "..xAdmin.Info.Name.."_active_bans(userid VARCHAR(32) NOT NULL PRIMARY KEY, user TEXT NOT NULL, adminid VARCHAR(32) NOT NULL, admin TEXT NOT NULL, reason TEXT NOT NULL, start INT(11) NOT NULL, duration INT(11) NOT NULL)")
 
 		print(xAdmin.Info.Name.."_users")
 		xAdmin.Database.Query("CREATE TABLE IF NOT EXISTS "..xAdmin.Info.Name.."_users(userid VARCHAR(32) NOT NULL PRIMARY KEY, rank TEXT NOT NULL)")
 
 		print("xadmin_ban_archive")
-		xAdmin.Database.Query("CREATE TABLE IF NOT EXISTS xadmin_ban_archive(id INT(11) NOT NULL AUTO_INCREMENT, userid VARCHAR(32) NOT NULL, user TEXT NOT NULL, adminid VARCHAR(32) NOT NULL, admin TEXT NOT NULL, reason TEXT NOT NULL, server TEXT NOT NULL, start INT(11) NOT NULL, end INT(11) NOT NULL)")
+		xAdmin.Database.Query("CREATE TABLE IF NOT EXISTS xadmin_ban_archive(id INT(11) NOT NULL AUTO_INCREMENT, userid VARCHAR(32) NOT NULL, user TEXT NOT NULL, adminid VARCHAR(32) NOT NULL, admin TEXT NOT NULL, reason TEXT NOT NULL, server TEXT NOT NULL, start INT(11) NOT NULL, duration INT(11) NOT NULL)")
 	end
 	xAdmin.Database.Connection.onConnectionFailed = function(db, sqlerror)
 		print("=========================")
@@ -65,8 +65,8 @@ end
 
 -- Ban functions
 function xAdmin.Database.CreateBan(userid, user, adminid, admin, reason, tEnd)
-	xAdmin.Database.Query(string.format("INSERT INTO %s_active_bans (userid, user, adminid, admin, reason, start, _end) VALUES ('%s', '%s', '%s', '%s', '%s', %s, %s) ON DUPLICATE KEY UPDATE adminid='%s', admin='%s', reason='%s', start=%s, _end=%s;", xAdmin.Info.Name, userid, user or "Unknown", adminid, admin or "Console", reason or "No reason given", os.time(), tEnd, adminid, admin or "Console", reason or "No reason given", os.time(), tEnd))
-	xAdmin.Database.Query(string.format("INSERT INTO xadmin_ban_archive (userid, user, adminid, admin, reason, server, start, end) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', %s, %s);", userid, xAdmin.Database.Escape(user) or "Unknown", adminid, xAdmin.Database.Escape(admin) or "Console", xAdmin.Database.Escape(reason) or "No reason given", xAdmin.Info.FullName, os.time(), tEnd))
+	xAdmin.Database.Query(string.format("INSERT INTO %s_active_bans (userid, user, adminid, admin, reason, start, duration) VALUES ('%s', '%s', '%s', '%s', '%s', %s, %s) ON DUPLICATE KEY UPDATE adminid='%s', admin='%s', reason='%s', start=%s, _end=%s;", xAdmin.Info.Name, userid, user or "Unknown", adminid, admin or "Console", reason or "No reason given", os.time(), tEnd, adminid, admin or "Console", reason or "No reason given", os.time(), tEnd))
+	xAdmin.Database.Query(string.format("INSERT INTO xadmin_ban_archive (userid, user, adminid, admin, reason, server, start, duration) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', %s, %s);", userid, xAdmin.Database.Escape(user) or "Unknown", adminid, xAdmin.Database.Escape(admin) or "Console", xAdmin.Database.Escape(reason) or "No reason given", xAdmin.Info.FullName, os.time(), tEnd))
 end
 
 function xAdmin.Database.DestroyBan(userid)
