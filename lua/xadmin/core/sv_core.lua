@@ -153,6 +153,8 @@ function xAdmin.Core.Msg(args, target)
 		net.Broadcast()
 	end
 
+	if IsValid(target) and not target.isConsole then return end
+
 	local nextColor = Color(255, 255, 255, 255)
 	for k, v in pairs(args) do
 		if (type(v) == "table") then
