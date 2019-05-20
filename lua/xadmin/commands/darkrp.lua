@@ -18,7 +18,7 @@ xAdmin.Core.RegisterCommand("addmoney", "[DarkRP] Gives the target X money", 100
 		return
 	end
 
-	xAdmin.Core.Msg({admin, " has added ", DarkRP.formatMoney(args[2]), " to ", target})
+	xAdmin.Core.Msg({admin, " has added ", Color(0, 255, 0), DarkRP.formatMoney(args[2]), Color(255, 255, 255), " to ", target})
 	target:addMoney(args[2])
 end)
 
@@ -42,7 +42,7 @@ xAdmin.Core.RegisterCommand("removemoney", "[DarkRP] Takes X money from the targ
 		return
 	end
 
-	xAdmin.Core.Msg({admin, " has taken ", DarkRP.formatMoney(args[2]), " from ", target})
+	xAdmin.Core.Msg({admin, " has taken ", Color(0, 255, 0), DarkRP.formatMoney(args[2]), Color(255, 255, 255),  " from ", target})
 	target:addMoney(-args[2])
 end)
 
@@ -67,6 +67,6 @@ xAdmin.Core.RegisterCommand("setmoney", "[DarkRP] Sets the target's money to X",
 		return
 	end
 
-	xAdmin.Core.Msg({admin, " has set ", target, "'s money to ", DarkRP.formatMoney(args[2])})
+	xAdmin.Core.Msg({admin, " has set ", target, "'s money to ", Color(0, 255, 0), DarkRP.formatMoney(args[2])})
 	target:addMoney(-target:getDarkRPVar("money") + args[2]) -- Seems that DarkRP doesn't have a setMonet class?
 end)
