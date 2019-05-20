@@ -50,7 +50,7 @@ xAdmin.Core.RegisterCommand("health", "Set a user's health", 40, function(admin,
 			return
 		end
 		target:SetHealth(tonumber(args[2]))
-		xAdmin.Core.Msg({admin, " has set ", target, "'s health to ", Color(255, 0, 0), tonumber(args[2])})
+		xAdmin.Core.Msg({admin, " has set ", target, "'s health to ", Color(255, 0, 0), args[2]})
 		return
 	end
 	if(Operation == 2) then -- Add
@@ -64,7 +64,7 @@ xAdmin.Core.RegisterCommand("health", "Set a user's health", 40, function(admin,
 			return
 		end
 		target:SetHealth(target:Health() + tonumber(AddHP))
-		xAdmin.Core.Msg({admin, " has added ", Color(255, 0, 0), tonumber(AddHP), Color(255, 255, 255), " health to ", target, "."})
+		xAdmin.Core.Msg({admin, " has added ", Color(255, 0, 0), AddHP, Color(255, 255, 255), " health to ", target, "."})
 		return
 	end
 	if(Operation == 3) then -- Remove
@@ -82,7 +82,7 @@ xAdmin.Core.RegisterCommand("health", "Set a user's health", 40, function(admin,
 			return
 		end
 		target:SetHealth(target:Health() - tonumber(RemoveHP))
-		xAdmin.Core.Msg({admin, " has removed ", Color(255, 0, 0), tonumber(RemoveHP), Color(255, 255, 255), " health from ", target, "."})
+		xAdmin.Core.Msg({admin, " has removed ", Color(255, 0, 0), RemoveHP, Color(255, 255, 255), " health from ", target, "."})
 		return
 	end
 	xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", Color(255, 255, 255), "Unable to determine what operation to use with the value you specified."}, admin)

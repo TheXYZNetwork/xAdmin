@@ -134,6 +134,7 @@ function xAdmin.Core.FormatArguments(args)
 end
 
 function xAdmin.Core.Msg(args, target)
+
 	for k, v in pairs(args) do
 		if istable(v) and v.isConsole then
 			args[k]= v:Name()
@@ -141,6 +142,9 @@ function xAdmin.Core.Msg(args, target)
 			table.insert(args, k+2, Color(215, 215, 215))
 		end
 	end
+
+	table.insert(args, 1, Color(255, 255, 255))
+
 	net.Start("xAdminChatMessage")
 		net.WriteTable(args)
 	if target then
