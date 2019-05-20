@@ -85,10 +85,10 @@ end)
 hook.Add("CheckPassword", "xAdminCheckBanned", function(steamID64)
     xAdmin.Database.IsBanned(steamID64, function(data)
         if data[1] then
-            if data[1]._end == 0 then
+            if data[1].duration == 0 then
                 game.KickID(util.SteamIDFrom64(steamID64), string.format(xAdmin.Config.BanFormat, data[1].admin, "Permanent", data[1].reason))
-            elseif (data[1].start + data[1]._end) > os.time() then
-                game.KickID(util.SteamIDFrom64(steamID64), string.format(xAdmin.Config.BanFormat, data[1].admin, string.NiceTime((data[1].start+data[1]._end)-os.time()), data[1].reason))
+            elseif (data[1].start + data[1].duration) > os.time() then
+                game.KickID(util.SteamIDFrom64(steamID64), string.format(xAdmin.Config.BanFormat, data[1].admin, string.NiceTime((data[1].start+data[1].duration)-os.time()), data[1].reason))
             else
                 xAdmin.Database.DestroyBan(steamID64)
             end
