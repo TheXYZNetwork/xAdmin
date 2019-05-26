@@ -16,6 +16,7 @@ function ply:IsAdmin()
 	if self:GetGroupPower() >= xAdmin.Config.Admin then
 		return true
 	end
+
 	return false
 end
 
@@ -23,6 +24,7 @@ function ply:IsSuperAdmin()
 	if self:GetGroupPower() >= xAdmin.Config.Superadmin then
 		return true
 	end
+
 	return false
 end
 
