@@ -30,3 +30,4 @@ I encourage you to contribute to this. If it's a small bug fix or adding a comma
 - [Jake](https://github.com/JakeButterfield)
 - [Dr.Pepper](https://github.com/DrPepperG)
 - [Livaco](https://github.com/Livaco)
+- [Lapin](https://github.com/ExtReMLapin)
