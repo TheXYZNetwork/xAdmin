@@ -94,7 +94,7 @@ end)
 --- #
 --- # SETJOB
 --- #
-xAdmin.Core.RegisterCommand("setjob", "[DarkRP] Sets the target's job", 0, function(admin, args)
+xAdmin.Core.RegisterCommand("setjob", "[DarkRP] Sets the target's job", 100, function(admin, args)
 	if not args or not args[1] then
 		return
 	end
