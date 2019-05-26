@@ -56,7 +56,7 @@ end
 
 -- Use functions
 function xAdmin.Database.UpdateUsersGroup(userid, rank)
-	xAdmin.Database.Query(string.format("INSERT INTO %s_users (userid, rank) VALUES ('%s', '%s') ON DUPLICATE KEY UPDATE rank='%s';", xAdmin.Info.Name, userid, rank, rank))
+	xAdmin.Database.Query(string.format("INSERT INTO %s_users (userid, rank) VALUES ('%s', '%s') ON DUPLICATE KEY UPDATE rank='%s';", xAdmin.Info.Name, userid, xAdmin.Database.Escape(rank), xAdmin.Database.Escape(rank)))
 end
 function xAdmin.Database.GetUsersGroup(userid, callback)
 	xAdmin.Database.Query(string.format("SELECT * FROM %s_users WHERE userid='%s';", xAdmin.Info.Name, userid), callback)
