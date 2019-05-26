@@ -10,7 +10,10 @@ function xAdmin.Console:GetGroupPower()
 end
 
 function xAdmin.Console:GetGroupTable()
-	return {name = "Console", power = 9999}
+	return {
+		name = "Console",
+		power = 9999
+	}
 end
 
 function xAdmin.Console:IsAdmin()

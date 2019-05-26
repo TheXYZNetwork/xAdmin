@@ -8,28 +8,27 @@ hook.Add("PlayerInitialSpawn", "xAdminLoadPlayerRank", function(ply)
 		end
 
 		net.Start("xAdminNetworkIDRank")
-			net.WriteString(ply:SteamID64())
-			net.WriteString(xAdmin.Users[ply:SteamID64()])
+		net.WriteString(ply:SteamID64())
+		net.WriteString(xAdmin.Users[ply:SteamID64()])
 		net.Broadcast()
-
-
 		net.Start("xAdminNetworkExistingUsers")
-			net.WriteTable(xAdmin.Users)
+		net.WriteTable(xAdmin.Users)
 		net.Send(ply)
 
 		if ply:HasPower(xAdmin.Config.AdminChat) then
 			xAdmin.AdminChat[ply:SteamID64()] = ply
 		end
 
-
 		local commandCache = {}
+
 		for k, v in pairs(xAdmin.Commands) do
 			if ply:HasPower(v.power) then
 				commandCache[v.command] = v.desc
 			end
 		end
+
 		net.Start("xAdminNetworkCommands")
-			net.WriteTable(commandCache)
+		net.WriteTable(commandCache)
 		net.Send(ply)
 	end)
 end)
@@ -43,7 +42,7 @@ function xAdmin.Core.GetUser(info, admin)
 	if info == "" then
 		return nil
 	end
-	
+
 	if IsValid(admin) then
 		if info == "^" then
 			return admin
@@ -53,6 +52,7 @@ function xAdmin.Core.GetUser(info, admin)
 	if IsValid(admin) then
 		if info == "@" then
 			local target = admin:GetEyeTrace().Entity
+
 			if target:IsPlayer() then
 				return target
 			end
@@ -60,17 +60,19 @@ function xAdmin.Core.GetUser(info, admin)
 	end
 
 	local isID
+
 	if not (util.SteamIDFrom64(info) == "STEAM_0:0:0") then
 		isID = info
 	else
 		isID = util.SteamIDTo64(info)
 	end
+
 	if not (isID == "0") then
 		return player.GetBySteamID64(isID)
 	end
 
-
 	info = string.Replace(info, "\"", "")
+
 	for k, v in pairs(player.GetAll()) do
 		if string.find(string.lower(v:Name()), string.lower(info)) then
 			return v
@@ -88,16 +90,19 @@ function xAdmin.Core.GetID64(info, admin)
 	end
 
 	local isID
+
 	if not (util.SteamIDFrom64(info) == "STEAM_0:0:0") then
 		isID = info
 	else
 		isID = util.SteamIDTo64(info)
 	end
+
 	if not (isID == "0") then
 		return isID, player.GetBySteamID64(isID)
 	end
 
 	info = string.Replace(info, "\"", "")
+
 	for k, v in pairs(player.GetAll()) do
 		if string.find(string.lower(v:Name()), string.lower(info)) then
 			return v:SteamID64(), v
@@ -123,39 +128,41 @@ function xAdmin.Core.FormatArguments(args)
 	if Start and End then
 		args[Start] = string.Trim(table.concat(args, " ", Start, End), "\"")
 
-		for i=1, (End - Start) do
+		for i = 1, (End - Start) do
 			table.remove(args, Start + 1)
 		end
-		
+
 		args = xAdmin.Core.FormatArguments(args)
 	end
-	
+
 	return args
 end
 
 function xAdmin.Core.Msg(args, target)
-
 	for k, v in pairs(args) do
 		if istable(v) and v.isConsole then
-			args[k]= v:Name()
+			args[k] = v:Name()
 			table.insert(args, k, Color(0, 0, 0))
-			table.insert(args, k+2, Color(215, 215, 215))
+			table.insert(args, k + 2, Color(215, 215, 215))
 		end
 	end
 
-	table.insert(args, 1, Color(255, 255, 255))
-
+	table.insert(args, 1, color_white)
 	net.Start("xAdminChatMessage")
-		net.WriteTable(args)
+	net.WriteTable(args)
+
 	if target then
 		net.Send(target)
 	else
 		net.Broadcast()
 	end
 
-	if IsValid(target) and not target.isConsole then return end
+	if IsValid(target) and not target.isConsole then
+		return
+	end
 
-	local nextColor = Color(255, 255, 255, 255)
+	local nextColor = color_white
+
 	for k, v in pairs(args) do
 		if (type(v) == "table") then
 			nextColor = v
@@ -165,5 +172,6 @@ function xAdmin.Core.Msg(args, target)
 			MsgC(nextColor, v)
 		end
 	end
+
 	MsgC("\n")
-end 
+end

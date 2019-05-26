@@ -10,6 +10,7 @@ net.Receive("xAdminNetworkExistingUsers", function()
 end)
 
 xAdmin.CommandCache = xAdmin.CommandCache or {}
+
 net.Receive("xAdminNetworkCommands", function()
 	xAdmin.CommandCache = net.ReadTable()
 end)
@@ -17,9 +18,11 @@ end)
 concommand.Add("xadmin_help", function()
 	print("xAdmin:")
 	print("xAdmin is a text based command system that is used by staff to manage the server. You have access to the following commands:")
+
 	for k, v in pairs(xAdmin.CommandCache) do
 		print(k, "-", v)
 	end
+
 	print("To run a command, use the following format:")
 	print("For console use:", "xadmin <command> <arguments>")
 	print("	", "Example:", "xadmin health owain 100")
@@ -37,7 +40,10 @@ end
 
 net.Receive("xAdminChatMessage", function()
 	local args = net.ReadTable()
-	if not args then return end
+
+	if not args then
+		return
+	end
 
 	xAdmin.Core.Msg(args)
 end)
