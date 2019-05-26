@@ -20,7 +20,7 @@ function xAdmin.Database.Connect()
 		print(xAdmin.Info.Name .. "_users")
 		xAdmin.Database.Query("CREATE TABLE IF NOT EXISTS " .. xAdmin.Info.Name .. "_users(userid VARCHAR(32) NOT NULL PRIMARY KEY, rank TEXT NOT NULL)")
 		print("xadmin_ban_archive")
-		xAdmin.Database.Query("CREATE TABLE IF NOT EXISTS xadmin_ban_archive(id INT(11) NOT NULL AUTO_INCREMENT, userid VARCHAR(32) NOT NULL, user TEXT NOT NULL, adminid VARCHAR(32) NOT NULL, admin TEXT NOT NULL, reason TEXT NOT NULL, server TEXT NOT NULL, start INT(11) NOT NULL, duration INT(11) NOT NULL)")
+		xAdmin.Database.Query("CREATE TABLE IF NOT EXISTS xadmin_ban_archive(id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, userid VARCHAR(32) NOT NULL, user TEXT NOT NULL, adminid VARCHAR(32) NOT NULL, admin TEXT NOT NULL, reason TEXT NOT NULL, server TEXT NOT NULL, start INT(11) NOT NULL, duration INT(11) NOT NULL)")
 	end
 
 	xAdmin.Database.Connection.onConnectionFailed = function(db, sqlerror)
