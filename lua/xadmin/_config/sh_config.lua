@@ -34,7 +34,8 @@ xAdmin.Config.Admin = 80 -- Admin
 xAdmin.Config.AdminChat = 30
 -- The color of admin chat
 xAdmin.Config.AdminChatColor = Color(0,150,255)
-
+--Color of the logs
+xAdmin.Config.ColorLog = Color(46, 170, 200)
 
 /*===============
 Formatting Config

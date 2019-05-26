@@ -34,7 +34,7 @@ xAdmin.Core.RegisterCommand("steamid", "Gets a user's SteamID32", 0, function(ad
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end

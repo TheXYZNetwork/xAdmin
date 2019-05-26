@@ -161,7 +161,7 @@ function xAdmin.Core.Msg(args, target)
 		return
 	end
 
-	local nextColor = Color(255, 255, 255, 255)
+	local nextColor = color_white
 
 	for k, v in pairs(args) do
 		if (type(v) == "table") then

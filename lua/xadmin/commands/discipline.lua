@@ -9,7 +9,7 @@ xAdmin.Core.RegisterCommand("kick", "Kicks the target player", 30, function(admi
     local target = xAdmin.Core.GetUser(args[1], admin)
 
     if not IsValid(target) then
-        xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+        xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
         return
     end
@@ -24,7 +24,7 @@ xAdmin.Core.RegisterCommand("kick", "Kicks the target player", 30, function(admi
     end
 
     if target:HasPower(admin:GetGroupPower()) then
-        xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, target, " out powers you and thus you cannot kick them."}, admin)
+        xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, target, " out powers you and thus you cannot kick them."}, admin)
 
         return
     end
@@ -44,7 +44,7 @@ xAdmin.Core.RegisterCommand("ban", "Bans the target player", 40, function(admin,
     local target, targetPly = xAdmin.Core.GetID64(args[1], admin)
 
     if not target then
-        xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+        xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
         return
     end
@@ -84,7 +84,7 @@ xAdmin.Core.RegisterCommand("ban", "Bans the target player", 40, function(admin,
 
     if IsValid(targetPly) then
         if targetPly:HasPower(admin:GetGroupPower()) then
-            xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, targetPly, " out powers you and thus you cannot ban them."}, admin)
+            xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, targetPly, " out powers you and thus you cannot ban them."}, admin)
 
             return
         end
@@ -121,7 +121,7 @@ xAdmin.Core.RegisterCommand("unban", "Unbans the target id", 50, function(admin,
     local target, targetPly = xAdmin.Core.GetID64(args[1], admin)
 
     if not target then
-        xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+        xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
         return
     end

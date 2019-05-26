@@ -9,7 +9,7 @@ xAdmin.Core.RegisterCommand("mute", "Mute a user", 50, function(admin, args)
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
@@ -29,7 +29,7 @@ xAdmin.Core.RegisterCommand("unmute", "Unmute a user", 50, function(admin, args)
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
@@ -58,7 +58,7 @@ xAdmin.Core.RegisterCommand("gag", "Gag a user", 50, function(admin, args)
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
@@ -78,7 +78,7 @@ xAdmin.Core.RegisterCommand("ungag", "Ungag a user", 50, function(admin, args)
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
@@ -102,7 +102,7 @@ end)
 hook.Add("PlayerSay", "xAdminAdminChat", function(ply, text)
 	if string.sub(text, 1, 1) == "@" and ply:HasPower(xAdmin.Config.AdminChat) then
 		for k, v in pairs(xAdmin.AdminChat) do
-			xAdmin.Core.Msg({Color(46, 170, 200), "[xAdminChat] ", ply, color_white, ": ", xAdmin.Config.AdminChatColor, string.TrimLeft(string.sub(text, 2))}, v)
+			xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdminChat] ", ply, color_white, ": ", xAdmin.Config.AdminChatColor, string.TrimLeft(string.sub(text, 2))}, v)
 		end
 
 		return ""

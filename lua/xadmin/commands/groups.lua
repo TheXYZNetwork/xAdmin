@@ -7,7 +7,7 @@ xAdmin.Core.RegisterCommand("setgroup", "Set a user's group", 100, function(admi
 	end
 
 	if not xAdmin.Groups[args[2]] then
-		xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, args[2] .. " is not a valid usergroup"}, admin)
+		xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, args[2] .. " is not a valid usergroup"}, admin)
 
 		return
 	end
@@ -15,7 +15,7 @@ xAdmin.Core.RegisterCommand("setgroup", "Set a user's group", 100, function(admi
 	local target, targetPly = xAdmin.Core.GetID64(args[1], admin)
 
 	if not target then
-		xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
@@ -64,7 +64,7 @@ xAdmin.Core.RegisterCommand("getgroup", "Get a user's group", 10, function(admin
 	local targetID, target = xAdmin.Core.GetID64(args[1], admin)
 
 	if not targetID then
-		xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
