@@ -13,9 +13,8 @@ end)
 --- # FREEZEPROPS
 --- #
 xAdmin.Core.RegisterCommand("freezeprops", "Freezes all props on the map", 50, function(admin, args)
-	for k, v in pairs(ents.FindByClass("prop_physics")) do
+	for _, v in pairs(ents.FindByClass("prop_physics")) do
 		if v:IsValid() and v:IsInWorld() then
-			print(k, v)
 			v:GetPhysicsObject():EnableMotion(false)
 		end
 	end
