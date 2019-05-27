@@ -18,7 +18,7 @@ function xAdmin.Database.Connect()
 		print(xAdmin.Info.Name .. "_active_bans")
 		xAdmin.Database.Query("CREATE TABLE IF NOT EXISTS " .. xAdmin.Info.Name .. "_active_bans(userid VARCHAR(32) NOT NULL PRIMARY KEY, user TEXT NOT NULL, adminid VARCHAR(32) NOT NULL, admin TEXT NOT NULL, reason TEXT NOT NULL, start INT(11) NOT NULL, duration INT(11) NOT NULL)")
 		print(xAdmin.Info.Name .. "_users")
-		xAdmin.Database.Query("CREATE TABLE IF NOT EXISTS " .. xAdmin.Info.Name .. "_users(userid VARCHAR(32) NOT NULL PRIMARY KEY, rank TEXT NOT NULL)")
+		xAdmin.Database.Query("CREATE TABLE IF NOT EXISTS " .. xAdmin.Info.Name .. "_users(userid VARCHAR(32) NOT NULL PRIMARY KEY, `rank` TEXT NOT NULL)")
 		print("xadmin_ban_archive")
 		xAdmin.Database.Query("CREATE TABLE IF NOT EXISTS xadmin_ban_archive(id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, userid VARCHAR(32) NOT NULL, user TEXT NOT NULL, adminid VARCHAR(32) NOT NULL, admin TEXT NOT NULL, reason TEXT NOT NULL, server TEXT NOT NULL, start INT(11) NOT NULL, duration INT(11) NOT NULL)")
 	end
@@ -57,7 +57,7 @@ end
 
 -- Use functions
 function xAdmin.Database.UpdateUsersGroup(userid, rank)
-	xAdmin.Database.Query(string.format("INSERT INTO %s_users (userid, rank) VALUES ('%s', '%s') ON DUPLICATE KEY UPDATE rank='%s';", xAdmin.Info.Name, userid, xAdmin.Database.Escape(rank), xAdmin.Database.Escape(rank)))
+	xAdmin.Database.Query(string.format("INSERT INTO %s_users (userid, `rank`) VALUES ('%s', '%s') ON DUPLICATE KEY UPDATE `rank`='%s';", xAdmin.Info.Name, userid, xAdmin.Database.Escape(rank), xAdmin.Database.Escape(rank)))
 end
 
 function xAdmin.Database.GetUsersGroup(userid, callback)
