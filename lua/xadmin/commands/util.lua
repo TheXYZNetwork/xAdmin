@@ -358,5 +358,5 @@ xAdmin.Core.RegisterCommand("give", "Give a user a weapon", 70, function(admin, 
 	end
 
 	target:Give(args[2] or "weapon_357")
-	xAdmin.Core.Msg({admin, " has given ", target, " a ", Color(138, 43, 226), args[2] or "models/props_lab/blastdoor001c.mdl"})
+	xAdmin.Core.Msg({admin, " has given ", target, " a ", Color(138, 43, 226), args[2] or "weapon_357"})
 end)
