@@ -25,7 +25,7 @@ end)
 --- #
 --- # STEAMID
 --- #
-xAdmin.Core.RegisterCommand("steamid", "Gets a user's SteamID32", 0, function(admin, args)
+xAdmin.Core.RegisterCommand("steamid", "Gets a user's SteamID64", 0, function(admin, args)
 	if not args or not args[1] then
 		return
 	end
