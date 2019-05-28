@@ -11,17 +11,17 @@ xAdmin Config
 /*===========
 Ranks Config
 =============*/
--- These are the ranks that users can be. The first argument is the rank name and the 2nd is the power level.
+-- These are the ranks that users can be. The first argument is the rank name, the 2nd is the power level and the 3rd is the prop limit set to nil for default value.
 
 -- Staff ranks
-xAdmin.Core.RegisterGroup("superadmin", 100)
-xAdmin.Core.RegisterGroup("admin", 80)
-xAdmin.Core.RegisterGroup("moderator", 50)
+xAdmin.Core.RegisterGroup("superadmin", 100, 100)
+xAdmin.Core.RegisterGroup("admin", 80, 40)
+xAdmin.Core.RegisterGroup("moderator", 50, 40)
 -- Paid ranks
-xAdmin.Core.RegisterGroup("vip+", 20)
-xAdmin.Core.RegisterGroup("vip", 10)
+xAdmin.Core.RegisterGroup("vip+", 20, 35)
+xAdmin.Core.RegisterGroup("vip", 10, 30)
 -- Base rank
-xAdmin.Core.RegisterGroup("user", 0)
+xAdmin.Core.RegisterGroup("user", 0, nil)
 
 -- The default group that a user is given on first join.
 xAdmin.Config.DefaultGroup = "user"
@@ -34,8 +34,11 @@ xAdmin.Config.Admin = 80 -- Admin
 xAdmin.Config.AdminChat = 30
 -- The color of admin chat
 xAdmin.Config.AdminChatColor = Color(0,150,255)
---Color of the logs
+-- Color of the logs
 xAdmin.Config.ColorLog = Color(46, 170, 200)
+-- Prop limit function
+xAdmin.Config.PropLimit = true
+xAdmin.Config.DefaultPropLimit = 25
 
 /*===============
 Formatting Config

@@ -1,7 +1,8 @@
-function xAdmin.Core.RegisterGroup(name, power)
+function xAdmin.Core.RegisterGroup(name, power, props)
 	xAdmin.Groups[name] = {
 		name = name,
-		power = power
+		power = power,
+		proplimit = props
 	}
 end
 
