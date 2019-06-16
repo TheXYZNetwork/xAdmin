@@ -2,8 +2,8 @@
 xAdmin Config
 =============*/
 -- Here is the config for xAdmin. You can create ranks, set needed power levels and even edit the ban message.
--- Ensure you go to xadmin/core/sv_db.lua and set up your SQL credentials.
--- If you're running multiple servers, I also suggest going to autorun/xadmin_init.lua and setting up unique names for each server. Else they will share info.
+-- Ensure you go to xadmin/core/sv_db.lua and set up your SQL credentials. (This is only if you're using MYSQLoo)
+	-- If you're running multiple servers, I also suggest going to autorun/xadmin_init.lua and setting up unique names for each server. Else they will share info.
 -- You can find a "Getting Started" guide here: https://github.com/OwjoTheGreat/xadmin/wiki/Getting-Started
 -- If you want to change the needed power level of the command you can find that in the xadmin/commands folder. See the above guide (Getting Started) for a detailed guide on how that works.
 
