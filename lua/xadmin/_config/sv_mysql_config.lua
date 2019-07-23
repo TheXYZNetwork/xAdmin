@@ -1,7 +1,7 @@
 xAdmin.Database.UseMySQL = false
-xAdmin.Database.Cerds = {}
-xAdmin.Database.Cerds.ip = "1.1.1.1"
-xAdmin.Database.Cerds.user = "user"
-xAdmin.Database.Cerds.password = "Pa$$W0rd"
-xAdmin.Database.Cerds.database = "xadmin_master"
-xAdmin.Database.Cerds.port = 3306
+xAdmin.Database.Creds = {}
+xAdmin.Database.Creds.ip = "1.1.1.1"
+xAdmin.Database.Creds.user = "user"
+xAdmin.Database.Creds.password = "Pa$$W0rd"
+xAdmin.Database.Creds.database = "xadmin_master"
+xAdmin.Database.Creds.port = 3306
