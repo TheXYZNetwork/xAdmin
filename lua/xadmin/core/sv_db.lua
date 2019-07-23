@@ -9,7 +9,7 @@ function xAdmin.Database.Connect()
 			return
 		end
 	
-		xAdmin.Database.Connection = mysqloo.connect(xAdmin.Database.Cerds.ip, xAdmin.Database.Cerds.user, xAdmin.Database.Cerds.password, xAdmin.Database.Cerds.database, xAdmin.Database.Cerds.port)
+		xAdmin.Database.Connection = mysqloo.connect(xAdmin.Database.Creds.ip, xAdmin.Database.Creds.user, xAdmin.Database.Creds.password, xAdmin.Database.Creds.database, xAdmin.Database.Creds.port)
 	
 		xAdmin.Database.Connection.onConnected = function()
 			print("=========================")
