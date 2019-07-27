@@ -37,6 +37,16 @@ if SERVER then
 			AddCSLuaFile(path .. folder .. "/" .. File)
 		end
 	end
+	timer.Simple(0, function() -- Hibernation 💤
+		for k, v in pairs(xAdmin.Commands) do
+			if !v.func then continue end
+			local cache = v.func
+			xAdmin.Commands[k].func = function(admin, args)
+				if !hook.Run("xadmin_commandRan", unpack({admin, args, v.command})) then return end -- So you can return false to prevent the command being run
+				cache(admin, args)
+			end
+		end
+	end)
 end
 
 if CLIENT then
