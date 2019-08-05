@@ -68,7 +68,7 @@ hook.Add("PlayerSay", "xAdminChatCommands", function(ply, msg)
 		if command and ply:HasPower(command.power) then
 			table.remove(args, 1)
 				
-			if hook.Run("xAdminCanRunCommand", ply, string.lower(args[1]), args, false) == false then
+			if hook.Run("xAdminCanRunCommand", ply, command.command, args, false) == false then
 				return
 			end
 				
