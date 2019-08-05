@@ -34,3 +34,4 @@ I encourage you to contribute to this. If it's a small bug fix or adding a comma
 - [Lapin](https://github.com/ExtReMLapin)
 - [pack](https://github.com/realpack)
 - [MilkGames](https://github.com/MilkGames)
+- [CL34R](https://github.com/CL34Rdev)
