@@ -6,7 +6,8 @@ A free and basic administration system for Garry's Mod.
 xAdmin is a lightweight and simplistic administration tool made with the intent to fit the gap that is currently made by these heavy and feature rich administation systems currently available on Garry's Mod. xAdmin tries to be lightweight and simplistic by only providing the core features needed. xAdmin doesn't even have a User Interface, it is 100% chat/console driven 
 
 ## Requirements
-xAdmin currently requires [MySQLoo](https://github.com/FredyH/MySQLOO) in order to work. I have intentions to allow it to work internally at some point, but for now, it requires [MySQLoo](https://github.com/FredyH/MySQLOO).
+~~xAdmin currently requires [MySQLoo](https://github.com/FredyH/MySQLOO) in order to work. I have intentions to allow it to work internally at some point, but for now, it requires [MySQLoo](https://github.com/FredyH/MySQLOO).~~
+Running xAdmin as is has no requirements, it's plug and play. If you wish to store your data in MySQL (Suggested), you will need the [MySQLoo](https://github.com/FredyH/MySQLOO) module installed on your server.
 
 ## If it's simplistic, why should I use it?
 Systems like [ULX](https://github.com/TeamUlysses/ulx) have the goal to be as feature rich as possible and meet the needs of everyone. xAdmin simply wants to provide the base utilities to help you and your team manage your servers.
@@ -31,3 +32,6 @@ I encourage you to contribute to this. If it's a small bug fix or adding a comma
 - [Dr.Pepper](https://github.com/DrPepperG)
 - [Livaco](https://github.com/Livaco)
 - [Lapin](https://github.com/ExtReMLapin)
+- [pack](https://github.com/realpack)
+- [MilkGames](https://github.com/MilkGames)
+- [CL34R](https://github.com/CL34Rdev)

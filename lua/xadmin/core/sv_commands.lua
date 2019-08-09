@@ -42,6 +42,7 @@ concommand.Add("xadmin", function(ply, cmd, args, argStr)
 	if not ply:HasPower(comTbl.power) then
 		return
 	end
+		
 
 	local formattedArgs = xAdmin.Core.FormatArguments(string.Explode(" ", argStr))
 
@@ -50,6 +51,11 @@ concommand.Add("xadmin", function(ply, cmd, args, argStr)
 	end
 
 	table.remove(formattedArgs, 1)
+	
+	if hook.Run("xAdminCanRunCommand", ply, string.lower(args[1]), formattedArgs, true) == false then
+		return
+	end
+		
 	comTbl.func(ply, formattedArgs)
 end)
 
@@ -61,6 +67,11 @@ hook.Add("PlayerSay", "xAdminChatCommands", function(ply, msg)
 
 		if command and ply:HasPower(command.power) then
 			table.remove(args, 1)
+				
+			if hook.Run("xAdminCanRunCommand", ply, command.command, args, false) == false then
+				return
+			end
+				
 			command.func(ply, args)
 		end
 	end

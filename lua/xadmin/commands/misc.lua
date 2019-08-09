@@ -13,9 +13,8 @@ end)
 --- # FREEZEPROPS
 --- #
 xAdmin.Core.RegisterCommand("freezeprops", "Freezes all props on the map", 50, function(admin, args)
-	for k, v in pairs(ents.FindByClass("prop_physics")) do
+	for _, v in pairs(ents.FindByClass("prop_physics")) do
 		if v:IsValid() and v:IsInWorld() then
-			print(k, v)
 			v:GetPhysicsObject():EnableMotion(false)
 		end
 	end
@@ -26,7 +25,7 @@ end)
 --- #
 --- # STEAMID
 --- #
-xAdmin.Core.RegisterCommand("steamid", "Gets a user's SteamID32", 0, function(admin, args)
+xAdmin.Core.RegisterCommand("steamid", "Gets a user's SteamID64", 0, function(admin, args)
 	if not args or not args[1] then
 		return
 	end

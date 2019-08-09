@@ -157,7 +157,7 @@ xAdmin.Core.RegisterCommand("armor", "Set a user's armor", 50, function(admin, a
 		end
 
 		target:SetArmor(tonumber(args[2]))
-		xAdmin.Core.Msg({admin, " has set ", target, "'s armor to ", Color(255, 0, 0), tonumber(args[2])})
+		xAdmin.Core.Msg({admin, " has set ", target, "'s armor to ", Color(255, 0, 0), args[2]})
 
 		return
 	end -- Set
@@ -178,7 +178,7 @@ xAdmin.Core.RegisterCommand("armor", "Set a user's armor", 50, function(admin, a
 		end
 
 		target:SetArmor(target:Armor() + tonumber(AddArmor))
-		xAdmin.Core.Msg({admin, " has added ", Color(255, 0, 0), tonumber(AddArmor), color_white, " armor to ", target, "."})
+		xAdmin.Core.Msg({admin, " has added ", Color(255, 0, 0), AddArmor, color_white, " armor to ", target, "."})
 
 		return
 	end -- Add
@@ -205,7 +205,7 @@ xAdmin.Core.RegisterCommand("armor", "Set a user's armor", 50, function(admin, a
 		end
 
 		target:SetArmor(target:Armor() - tonumber(RemoveArmor))
-		xAdmin.Core.Msg({admin, " has removed ", Color(255, 0, 0), tonumber(RemoveArmor), color_white, " armor from ", target, "."})
+		xAdmin.Core.Msg({admin, " has removed ", Color(255, 0, 0), RemoveArmor, color_white, " armor from ", target, "."})
 
 		return
 	end -- Remove
