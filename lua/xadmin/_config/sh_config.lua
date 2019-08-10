@@ -40,6 +40,11 @@ xAdmin.Config.ColorLog = Color(46, 170, 200)
 xAdmin.Config.PropLimit = true
 xAdmin.Config.DefaultPropLimit = 25
 
+-- The table prefix used when making the unique tables. If you're running multiple servers this should be unique else they will share data
+xAdmin.Config.Name = "svr1"
+-- The unique name of this server. This will be used as a unique identifier in the bans archive
+xAdmin.Config.FullName = "Server 1"
+
 /*===============
 Formatting Config
 =================*/
@@ -56,5 +61,5 @@ Banned by: %s
 Time left: %s
 Reason: %s
 
-Feel you were false banned? Appeal it on the forums 
+Feel you were false banned? Appeal it on the forums
 ------------]]

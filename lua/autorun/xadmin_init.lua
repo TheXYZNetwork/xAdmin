@@ -1,18 +1,17 @@
-xAdmin = {}
-xAdmin.Info = {}
-xAdmin.Database = {}
-xAdmin.Config = {}
-xAdmin.Core = {}
-xAdmin.Users = {}
-xAdmin.Groups = {}
-xAdmin.Commands = {}
-xAdmin.AdminChat = {}
+xAdmin = {
+	Database = {},
+	Config = {},
+	Core = {},
+	Users = {},
+	Groups = {},
+	Commands = {},
+	AdminChat = {}
+}
+
 print("Loading xAdmin")
-xAdmin.Info.Version = "1.0"
--- The table prefix used when making the unique tables. If you're running multiple servers this should be unique else they will share data
-xAdmin.Info.Name = "svr1"
--- The unique name of this server. This will be used as a unique identifier in the bans archive
-xAdmin.Info.FullName = "Server 1"
+
+xAdmin.Core.Version = "1.0"
+
 local path = "xadmin/"
 
 if SERVER then
