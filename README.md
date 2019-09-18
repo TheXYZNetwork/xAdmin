@@ -35,3 +35,4 @@ I encourage you to contribute to this. If it's a small bug fix or adding a comma
 - [pack](https://github.com/realpack)
 - [MilkGames](https://github.com/MilkGames)
 - [CL34R](https://github.com/CL34Rdev)
+- [NoSharp](https://github.com/NoSharp)
