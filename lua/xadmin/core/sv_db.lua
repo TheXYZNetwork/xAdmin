@@ -59,7 +59,10 @@ function xAdmin.Database.Connect()
 end
 
 xAdmin.Database.Connect()
-
+hook.Add("Initialize", "XAdmin Mysql", function()
+	
+	xAdmin.Database.Connect()
+end)
 function xAdmin.Database.Query(q, callback)
 	if xAdmin.Database.UseMySQL then
 		local query = xAdmin.Database.Connection:query(q)
