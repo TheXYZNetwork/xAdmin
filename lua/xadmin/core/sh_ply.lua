@@ -36,5 +36,28 @@ function ply:HasPower(power)
 	return self:GetGroupPower() >= power
 end
 
-function ply:SetUserGroup()
+function ply:SetUserGroup(group)
+	xAdmin.Users[self:SteamID64()] = group
+
+	if self:HasPower(xAdmin.Config.AdminChat) then
+		xAdmin.AdminChat[self:SteamID64()] = self
+	else
+		xAdmin.AdminChat[self:SteamID64()] = nil
+	end
+
+	local commandCache = {}
+
+	for k, v in pairs(xAdmin.Commands) do
+		if self:HasPower(v.power) then
+			commandCache[v.command] = v.desc
+		end
+	end
+
+	net.Start("xAdminNetworkCommands")
+	net.WriteTable(commandCache)
+	net.Send(self)
+	net.Start("xAdminNetworkIDRank")
+	net.WriteString(self:SteamID64())
+	net.WriteString(xAdmin.Users[self:SteamID64()])
+	net.Broadcast()
 end
