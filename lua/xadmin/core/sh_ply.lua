@@ -37,6 +37,8 @@ function ply:HasPower(power)
 end
 
 function ply:SetUserGroup(group)
+	if CLIENT then return false end
+	
 	xAdmin.Users[self:SteamID64()] = group
 
 	if self:HasPower(xAdmin.Config.AdminChat) then
