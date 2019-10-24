@@ -38,7 +38,7 @@ end
 
 function ply:SetUserGroup(group)
 	if CLIENT then return false end
-	
+
 	xAdmin.Users[self:SteamID64()] = group
 
 	if self:HasPower(xAdmin.Config.AdminChat) then
@@ -61,4 +61,6 @@ function ply:SetUserGroup(group)
 	net.WriteString(self:SteamID64())
 	net.WriteString(xAdmin.Users[self:SteamID64()])
 	net.Broadcast()
+
+	xAdmin.Database.UpdateUsersGroup(self:SteamID64(), xAdmin.Database.Escape(group))
 end

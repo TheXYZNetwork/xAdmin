@@ -20,7 +20,6 @@ xAdmin.Core.RegisterCommand("setgroup", "Set a user's group", 100, function(admi
 		return
 	end
 
-	xAdmin.Database.UpdateUsersGroup(target, xAdmin.Database.Escape(args[2]))
 
 	if IsValid(targetPly) then
 		xAdmin.Core.Msg({"Your usergroup has been updated to the following: " .. args[2]}, targetPly)
@@ -29,6 +28,8 @@ xAdmin.Core.RegisterCommand("setgroup", "Set a user's group", 100, function(admi
 		targetPly:SetUserGroup(args[2])
 	else
 		xAdmin.Core.Msg({"You have updated " .. target .. "'s usergroup to: " .. args[2]}, admin)
+
+		xAdmin.Database.UpdateUsersGroup(target, xAdmin.Database.Escape(args[2]))
 	end
 end)
 
