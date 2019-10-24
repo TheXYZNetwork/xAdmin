@@ -46,7 +46,6 @@ function ply:SetUserGroup(group)
 	end
 
 	local commandCache = {}
-
 	for k, v in pairs(xAdmin.Commands) do
 		if self:HasPower(v.power) then
 			commandCache[v.command] = v.desc
