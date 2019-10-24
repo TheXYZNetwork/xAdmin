@@ -25,29 +25,8 @@ xAdmin.Core.RegisterCommand("setgroup", "Set a user's group", 100, function(admi
 	if IsValid(targetPly) then
 		xAdmin.Core.Msg({"Your usergroup has been updated to the following: " .. args[2]}, targetPly)
 		xAdmin.Core.Msg({"You have updated ", targetPly:GetName(), "'s usergroup to: " .. args[2]}, admin)
-		xAdmin.Users[targetPly:SteamID64()] = args[2]
-
-		if targetPly:HasPower(xAdmin.Config.AdminChat) then
-			xAdmin.AdminChat[targetPly:SteamID64()] = targetPly
-		else
-			xAdmin.AdminChat[targetPly:SteamID64()] = nil
-		end
-
-		local commandCache = {}
-
-		for k, v in pairs(xAdmin.Commands) do
-			if targetPly:HasPower(v.power) then
-				commandCache[v.command] = v.desc
-			end
-		end
-
-		net.Start("xAdminNetworkCommands")
-		net.WriteTable(commandCache)
-		net.Send(targetPly)
-		net.Start("xAdminNetworkIDRank")
-		net.WriteString(targetPly:SteamID64())
-		net.WriteString(xAdmin.Users[targetPly:SteamID64()])
-		net.Broadcast()
+		
+		targetPly:SetUserGroup(args[2])
 	else
 		xAdmin.Core.Msg({"You have updated " .. target .. "'s usergroup to: " .. args[2]}, admin)
 	end
