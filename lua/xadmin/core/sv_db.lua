@@ -22,6 +22,7 @@ function xAdmin.Database.Connect()
 			xAdmin.Database.Query("CREATE TABLE IF NOT EXISTS " .. xAdmin.Config.Name .. "_users(userid VARCHAR(32) NOT NULL PRIMARY KEY, `rank` TEXT NOT NULL)")
 			print("xadmin_ban_archive")
 			xAdmin.Database.Query("CREATE TABLE IF NOT EXISTS xadmin_ban_archive(id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, userid VARCHAR(32) NOT NULL, user TEXT NOT NULL, adminid VARCHAR(32) NOT NULL, admin TEXT NOT NULL, reason TEXT NOT NULL, server TEXT NOT NULL, start INT(11) NOT NULL, duration INT(11) NOT NULL)")
+			hook.Run( "xAdminPostInit" )
 		end
 
 		xAdmin.Database.Connection.onConnectionFailed = function(db, sqlerror)
@@ -55,6 +56,7 @@ function xAdmin.Database.Connect()
 			print("xadmin_ban_archive")
 			sql.Query("CREATE TABLE IF NOT EXISTS xadmin_ban_archive(id INTEGER PRIMARY KEY AUTOINCREMENT, userid VARCHAR(32) NOT NULL, user TEXT NOT NULL, adminid VARCHAR(32) NOT NULL, admin TEXT NOT NULL, reason TEXT NOT NULL, server TEXT NOT NULL, start INT(11) NOT NULL, duration INT(11) NOT NULL)")
 		end
+		hook.Run( "xAdminPostInit" )
 	end
 end
 
