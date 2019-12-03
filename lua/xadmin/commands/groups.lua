@@ -31,6 +31,7 @@ xAdmin.Core.RegisterCommand("setgroup", "Set a user's group", 100, function(admi
 
 		xAdmin.Database.UpdateUsersGroup(target, xAdmin.Database.Escape(args[2]))
 	end
+	hook.Run("xAdminUsergroupUpdated", target, args[2])
 end)
 
 --- #
