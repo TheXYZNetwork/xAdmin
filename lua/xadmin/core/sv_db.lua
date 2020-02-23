@@ -97,7 +97,7 @@ function xAdmin.Database.UpdateUsersGroup(userid, rank)
 	if xAdmin.Database.UseMySQL then
 		xAdmin.Database.Query(string.format("INSERT INTO %s_users (userid, `rank`) VALUES ('%s', '%s') ON DUPLICATE KEY UPDATE `rank`='%s';", xAdmin.Config.Name, userid, xAdmin.Database.Escape(rank), xAdmin.Database.Escape(rank)))
 	else
-		xAdmin.Database.Query(string.format("INSERT OR REPLACE INTO xadmin_users (userid, `rank`) VALUES ('%s', '%s');", userid, xAdmin.Database.Escape(rank)))
+		xAdmin.Database.Query(string.format("INSERT OR REPLACE INTO %s_users (userid, `rank`) VALUES ('%s', '%s');", userid, xAdmin.Database.Escape(rank)))
 	end
 end
 
