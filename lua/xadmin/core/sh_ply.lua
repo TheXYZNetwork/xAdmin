@@ -39,6 +39,10 @@ end
 function ply:SetUserGroup(group)
 	if CLIENT then return false end
 
+	if CAMI then
+		CAMI.SignalUserGroupChanged(self, xAdmin.Users[self:SteamID64()], group, "xAdminGithub")
+	end
+
 	xAdmin.Users[self:SteamID64()] = group
 
 	if self:HasPower(xAdmin.Config.AdminChat) then
