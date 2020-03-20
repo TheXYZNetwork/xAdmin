@@ -7,7 +7,7 @@ function xAdmin.Core.RegisterGroup(name, power, props)
 end
 
 function xAdmin.Core.GetGroupPower(name)
-	return xAdmin.Groups[name].power or 0
+	return (xAdmin.Groups[name] and xAdmin.Groups[name].power) or 0
 end
 
 function xAdmin.Core.GetGroupsWithPower(power)

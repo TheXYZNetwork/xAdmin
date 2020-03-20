@@ -3,7 +3,7 @@ hook.Add("PostGamemodeLoaded", "xAdminLoadCAMISupport", function()
 	-- Register already existing groups
 	for k, v in pairs(CAMI.GetUsergroups()) do
 		if xAdmin.Groups[v.Name] then return end
-		xAdmin.Core.RegisterGroup(v.Name, 0, 0)
+		xAdmin.Core.RegisterGroup(v.Name, xAdmin.Core.GetGroupPower(v.Inherits), 0)
 	end
 
 	-- Register groups
