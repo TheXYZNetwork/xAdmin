@@ -74,7 +74,7 @@ function xAdmin.Core.GetUser(info, admin)
 	info = string.Replace(info, "\"", "")
 
 	for k, v in pairs(player.GetAll()) do
-		if string.find(string.lower(v:Name()), string.lower(info)) then
+		if string.find(string.lower(v:Name()), string.lower(info), nil, true) then
 			return v
 		end
 	end
