@@ -5,7 +5,8 @@ xAdmin = {
 	Users = {},
 	Groups = {},
 	Commands = {},
-	AdminChat = {}
+	AdminChat = {},
+	Github = true -- This can be used to identify the github xAdmin from the gmodstore xAdmin 
 }
 
 print("Loading xAdmin")
