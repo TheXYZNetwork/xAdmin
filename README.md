@@ -24,7 +24,7 @@ I have created a [simple wiki](https://github.com/OwjoTheGreat/xadmin/wiki) that
 I have also [documented](https://github.com/OwjoTheGreat/xadmin/wiki/Commands) all the default commands that come with xAdmin along with the arguments they take and what they do.
 
 ## Contributions
-I encourage you to contribute to this. If it's a small bug fix or adding a command, all contributions are welcome. If you spot a better way of doing something, submit it! The best way to improve shit is through collaboration. 
+I encourage you to contribute to this. If it's a small bug fix or adding a command, all contributions are welcome. If you spot a better way of doing something, submit it! The best way to improve stuff is through collaboration. 
 
 ## Credits
 - [Owain](https://github.com/OwjoTheGreat)
