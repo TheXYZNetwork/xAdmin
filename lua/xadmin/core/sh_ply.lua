@@ -1,7 +1,7 @@
 local ply = FindMetaTable("Player")
 
 function ply:GetUserGroup()
-	return xAdmin.Users[self:SteamID64()] or "user"
+	return xAdmin.Users[self:SteamID64()] or xAdmin.Config.DefaultGroup
 end
 
 function ply:GetGroupPower()
