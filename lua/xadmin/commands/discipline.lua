@@ -97,7 +97,7 @@ xAdmin.Core.RegisterCommand("ban", "Bans the target player", 40, function(admin,
 	xAdmin.Core.Msg({admin, " has banned ", ((IsValid(targetPly) and targetPly:Name()) or target), " for " .. ((time == 0 and "permanent") or string.NiceTime(time * 60)) .. " with the reason: " .. reason})
 	xAdmin.Database.CreateBan(target, (IsValid(targetPly) and targetPly:Name()) or "Unknown", admin:SteamID64(), admin:Name(), reason or "No reason given", time * 60)
 	
-	hook.Run("xAdminPlayerBanned", ((IsValid(targetPly) and targetPly:SteamID64()) or target), admin, reason, time * 60)
+	hook.Run("xAdminPlayerBanned", ((IsValid(targetPly) and targetPly) or target), admin, reason, time * 60)
 end)
 
 hook.Add("CheckPassword", "xAdminCheckBanned", function(steamID64)
