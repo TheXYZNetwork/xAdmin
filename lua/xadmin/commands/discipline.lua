@@ -31,6 +31,8 @@ xAdmin.Core.RegisterCommand("kick", "Kicks the target player", 30, function(admi
 
 	xAdmin.Core.Msg({target:Name(), " has been kicked by ", admin, " for: " .. reason})
 	target:Kick(reason)
+	
+	hook.Run("xAdminPlayerKicked", target, admin, reason)
 end)
 
 --- #
@@ -130,4 +132,6 @@ xAdmin.Core.RegisterCommand("unban", "Unbans the target id", 50, function(admin,
 
 	xAdmin.Core.Msg({admin, " has unbanned " .. target})
 	xAdmin.Database.DestroyBan(target)
+		
+	hook.Run("xAdminPlayerUnBanned", target, admin)
 end)
