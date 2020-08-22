@@ -31,6 +31,8 @@ xAdmin.Core.RegisterCommand("kick", "Kicks the target player", 30, function(admi
 
 	xAdmin.Core.Msg({target:Name(), " has been kicked by ", admin, " for: " .. reason})
 	target:Kick(reason)
+	
+	hook.Run("xAdminPlayerKicked", target, admin, reason)
 end)
 
 --- #
@@ -94,6 +96,8 @@ xAdmin.Core.RegisterCommand("ban", "Bans the target player", 40, function(admin,
 
 	xAdmin.Core.Msg({admin, " has banned ", ((IsValid(targetPly) and targetPly:Name()) or target), " for " .. ((time == 0 and "permanent") or string.NiceTime(time * 60)) .. " with the reason: " .. reason})
 	xAdmin.Database.CreateBan(target, (IsValid(targetPly) and targetPly:Name()) or "Unknown", admin:SteamID64(), admin:Name(), reason or "No reason given", time * 60)
+	
+	hook.Run("xAdminPlayerBanned", ((IsValid(targetPly) and targetPly) or target), admin, reason, time * 60)
 end)
 
 hook.Add("CheckPassword", "xAdminCheckBanned", function(steamID64)
@@ -128,4 +132,6 @@ xAdmin.Core.RegisterCommand("unban", "Unbans the target id", 50, function(admin,
 
 	xAdmin.Core.Msg({admin, " has unbanned " .. target})
 	xAdmin.Database.DestroyBan(target)
+		
+	hook.Run("xAdminPlayerUnBanned", target, admin)
 end)
