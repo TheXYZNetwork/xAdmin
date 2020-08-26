@@ -123,3 +123,7 @@ end
 function xAdmin.Database.IsBanned(userid, callback)
 	xAdmin.Database.Query(string.format("SELECT * FROM %s_active_bans WHERE userid='%s';", xAdmin.Config.Name, userid), callback)
 end
+
+function xAdmin.Database.LastBan(userid, callback)
+	xAdmin.Database.Query(string.format("SELECT * FROM xadmin_ban_archive WHERE userid='%s' ORDER BY id DESC LIMIT 1;", userid), callback)
+end
