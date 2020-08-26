@@ -129,6 +129,12 @@ xAdmin.Core.RegisterCommand("unban", "Unbans the target id", 50, function(admin,
 
 		return
 	end
+	
+	local canUnBan, msg = hook.Run("xAdminCanUnBan", admin, target)
+	if canUnBan == false then 
+		xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, msg}, admin)
+		return
+	end
 
 	xAdmin.Core.Msg({admin, " has unbanned " .. target})
 	xAdmin.Database.DestroyBan(target)
