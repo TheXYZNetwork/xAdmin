@@ -46,10 +46,6 @@ concommand.Add("xadmin", function(ply, cmd, args, argStr)
 
 	local formattedArgs = xAdmin.Core.FormatArguments(string.Explode(" ", argStr))
 
-	if not args[1] then
-		return
-	end
-
 	table.remove(formattedArgs, 1)
 	
 	if hook.Run("xAdminCanRunCommand", ply, string.lower(args[1]), formattedArgs, true) == false then
