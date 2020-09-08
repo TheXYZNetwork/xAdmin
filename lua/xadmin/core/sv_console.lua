@@ -41,9 +41,9 @@ function xAdmin.Console:Nick()
 end
 
 function xAdmin.Console:SteamID()
-	return "CONSOLE"
+	return "STEAM_0:0:00000000"
 end
 
 function xAdmin.Console:SteamID64()
-	return 1234567890
+	return "76561197960000000"
 end
