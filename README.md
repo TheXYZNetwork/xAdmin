@@ -28,8 +28,8 @@ I encourage you to contribute to this. If it's a small bug fix or adding a comma
 
 ## Extensions
 Here is a list of verififed or official xAdmin extensions. They're either made by us or approved by us. If you wish to have an xAdmin extension added to the list, just open an issue!
-- **xWarn** - An addon for xAdmin that allows you to warn players for breaking the rules.
-- **xSGroups** - An addon for xAdmin that allows you to set a secondary usergroup in addition to their primary usergroup.
+- [**xWarn**](https://github.com/TheXYZNetwork/xWarn) - An addon for xAdmin that allows you to warn players for breaking the rules.
+- [**xSGroups**](https://github.com/TheXYZNetwork/xSGroups) - An addon for xAdmin that allows you to set a secondary usergroup in addition to their primary usergroup.
 
 ## Credits
 - [Owain](https://github.com/OwjoTheGreat)
