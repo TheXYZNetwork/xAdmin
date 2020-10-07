@@ -26,6 +26,11 @@ I have also [documented](https://github.com/OwjoTheGreat/xadmin/wiki/Commands) a
 ## Contributions
 I encourage you to contribute to this. If it's a small bug fix or adding a command, all contributions are welcome. If you spot a better way of doing something, submit it! The best way to improve stuff is through collaboration. 
 
+## Extensions
+Here is a list of verififed or official xAdmin extensions. They're either made by us or approved by us. If you wish to have an xAdmin extension added to the list, just open an issue!
+- **xWarn** - An addon for xAdmin that allows you to warn players for breaking the rules.
+- **xSGroups** - An addon for xAdmin that allows you to set a secondary usergroup in addition to their primary usergroup.
+
 ## Credits
 - [Owain](https://github.com/OwjoTheGreat)
 - [Jake](https://github.com/JakeButterfield)
