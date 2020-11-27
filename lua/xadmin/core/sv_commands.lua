@@ -57,7 +57,7 @@ end)
 
 hook.Add("PlayerSay", "xAdminChatCommands", function(ply, msg)
 	if string.sub(msg, 1, 1) == xAdmin.Config.Prefix then
-		args = xAdmin.Core.FormatArguments(string.Explode(" ", msg))
+		local args = xAdmin.Core.FormatArguments(string.Explode(" ", msg))
 		args[1] = string.sub(args[1], 2)
 		local command = xAdmin.Core.IsCommand(string.lower(args[1]))
 
