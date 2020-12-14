@@ -45,5 +45,5 @@ function xAdmin.Console:SteamID()
 end
 
 function xAdmin.Console:SteamID64()
-	return "76561197960265728"
+	return "90071996842377216"
 end
