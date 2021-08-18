@@ -6,6 +6,7 @@ xAdmin = {
 	Groups = {},
 	Commands = {},
 	AdminChat = {},
+	Utility = {},
 	Github = true -- This can be used to identify the github xAdmin from the gmodstore xAdmin 
 }
 

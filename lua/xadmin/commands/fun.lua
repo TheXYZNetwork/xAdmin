@@ -1,7 +1,7 @@
 --- #
 --- # CLOAK
 --- #
-xAdmin.Core.RegisterCommand("cloak", "Cloak a user", 40, function(admin, args)
+xAdmin.Core.RegisterCommand("cloak", "Cloak a user", xAdmin.Config.PowerlevelPermissions["cloak"], function(admin, args)
 	if not args or not args[1] then
 		return
 	end
@@ -9,7 +9,7 @@ xAdmin.Core.RegisterCommand("cloak", "Cloak a user", 40, function(admin, args)
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({xAdmin.Config.ColorLog, xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
@@ -22,7 +22,7 @@ end)
 --- #
 --- # UNCLOAK
 --- #
-xAdmin.Core.RegisterCommand("uncloak", "Cloak a user", 40, function(admin, args)
+xAdmin.Core.RegisterCommand("uncloak", "Cloak a user", xAdmin.Config.PowerlevelPermissions["uncloak"], function(admin, args)
 	if not args or not args[1] then
 		return
 	end
@@ -30,7 +30,7 @@ xAdmin.Core.RegisterCommand("uncloak", "Cloak a user", 40, function(admin, args)
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({xAdmin.Config.ColorLog, xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
@@ -43,7 +43,7 @@ end)
 --- #
 --- # FREEZE
 --- #
-xAdmin.Core.RegisterCommand("freeze", "Freeze a user", 30, function(admin, args)
+xAdmin.Core.RegisterCommand("freeze", "Freeze a user", xAdmin.Config.PowerlevelPermissions["freeze"], function(admin, args)
 	if not args or not args[1] then
 		return
 	end
@@ -51,7 +51,7 @@ xAdmin.Core.RegisterCommand("freeze", "Freeze a user", 30, function(admin, args)
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({xAdmin.Config.ColorLog, xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
@@ -63,7 +63,7 @@ end)
 --- #
 --- # UNFREEZE
 --- #
-xAdmin.Core.RegisterCommand("unfreeze", "Unfreeze a user", 30, function(admin, args)
+xAdmin.Core.RegisterCommand("unfreeze", "Unfreeze a user", xAdmin.Config.PowerlevelPermissions["unfreeze"], function(admin, args)
 	if not args or not args[1] then
 		return
 	end
@@ -71,7 +71,7 @@ xAdmin.Core.RegisterCommand("unfreeze", "Unfreeze a user", 30, function(admin, a
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({xAdmin.Config.ColorLog, xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
@@ -83,7 +83,7 @@ end)
 --- #
 --- # SETMODEL
 --- #
-xAdmin.Core.RegisterCommand("setmodel", "Set a user's model", 100, function(admin, args)
+xAdmin.Core.RegisterCommand("setmodel", "Set a user's model", xAdmin.Config.PowerlevelPermissions["setmodel"], function(admin, args)
 	if not args or not args[1] or not args[2] then
 		return
 	end
@@ -91,7 +91,7 @@ xAdmin.Core.RegisterCommand("setmodel", "Set a user's model", 100, function(admi
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({xAdmin.Config.ColorLog, xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end

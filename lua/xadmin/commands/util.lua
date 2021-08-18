@@ -1,14 +1,14 @@
 --- #
 --- # NOCLIP
 --- #
-xAdmin.Core.RegisterCommand("noclip", "Toggle a user's noclip", 30, function(admin, args)
+xAdmin.Core.RegisterCommand("noclip", "Toggle a user's noclip", xAdmin.Config.PowerlevelPermissions["noclip"], function(admin, args)
 	local target = admin
 
 	if args and args[1] then
 		target = xAdmin.Core.GetUser(args[1], admin)
 
 		if not IsValid(target) or admin.isConsole then
-			xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+			xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 			return
 		end
@@ -28,7 +28,7 @@ end)
 --- #
 --- # HEALTH
 --- #
-xAdmin.Core.RegisterCommand("health", "Set a user's health", 40, function(admin, args)
+xAdmin.Core.RegisterCommand("health", "Set a user's health", xAdmin.Config.PowerlevelPermissions["health"], function(admin, args)
 	if not args or not args[1] or not args[2] then
 		return
 	end
@@ -36,7 +36,7 @@ xAdmin.Core.RegisterCommand("health", "Set a user's health", 40, function(admin,
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
@@ -55,7 +55,7 @@ xAdmin.Core.RegisterCommand("health", "Set a user's health", 40, function(admin,
 
 	if (Operation == 1) then
 		if (not tonumber(args[2])) then
-			xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, "'" .. args[2] .. "' is not a number/complete number. Please provide a valid number."}, admin)
+			xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "'" .. args[2] .. "' is not a number/complete number. Please provide a valid number."}, admin)
 
 			return
 		end
@@ -70,19 +70,19 @@ xAdmin.Core.RegisterCommand("health", "Set a user's health", 40, function(admin,
 		local AddHP = string.sub(args[2], 2, #args[2])
 
 		if (not tonumber(string.sub(args[2], 2, 2))) then
-			xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, "Unable to determine what operation to use with the value you specified."}, admin)
+			xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Unable to determine what operation to use with the value you specified."}, admin)
 
 			return
 		end
 
 		if (not tonumber(AddHP)) then
-			xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, "'" .. AddHP .. "' is not a number/complete number. Please provide a valid number."}, admin)
+			xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "'" .. AddHP .. "' is not a number/complete number. Please provide a valid number."}, admin)
 
 			return
 		end
 
 		target:SetHealth(target:Health() + tonumber(AddHP))
-		xAdmin.Core.Msg({admin, " has added ", Color(255, 0, 0), AddHP, color_white, " health to ", target, "."})
+		xAdmin.Core.Msg({admin, " has added ", Color(255, 0, 0), AddHP, xAdmin.Config.ColorLogText, " health to ", target, "."})
 
 		return
 	end -- Add
@@ -91,40 +91,40 @@ xAdmin.Core.RegisterCommand("health", "Set a user's health", 40, function(admin,
 		local RemoveHP = string.sub(args[2], 2, #args[2])
 
 		if (not tonumber(string.sub(args[2], 2, 2))) then
-			xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, "Unable to determine what operation to use with the value you specified."}, admin)
+			xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Unable to determine what operation to use with the value you specified."}, admin)
 
 			return
 		end
 
 		if (not tonumber(RemoveHP)) then
-			xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, "'" .. RemoveHP .. "' is not a number/complete number. Please provide a valid number."}, admin)
+			xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "'" .. RemoveHP .. "' is not a number/complete number. Please provide a valid number."}, admin)
 
 			return
 		end
 
 		if (target:Health() - tonumber(RemoveHP) <= 0) then
-			xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, "Unable to remove that much health, as it will result in a health value below zero."}, admin)
+			xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Unable to remove that much health, as it will result in a health value below zero."}, admin)
 
 			return
 		end
 
 		target:SetHealth(target:Health() - tonumber(RemoveHP))
-		xAdmin.Core.Msg({admin, " has removed ", Color(255, 0, 0), RemoveHP, color_white, " health from ", target, "."})
+		xAdmin.Core.Msg({admin, " has removed ", Color(255, 0, 0), RemoveHP, xAdmin.Config.ColorLogText, " health from ", target, "."})
 
 		return
 	end -- Remove
 
-	xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, "Unable to determine what operation to use with the value you specified."}, admin)
+	xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Unable to determine what operation to use with the value you specified."}, admin)
 end)
 
-xAdmin.Core.RegisterCommand("hp", "Alias for health", 40, function(admin, args)
+xAdmin.Core.RegisterCommand("hp", "Alias for health", xAdmin.Config.PowerlevelPermissions["health"], function(admin, args)
 	xAdmin.Commands["health"].func(admin, args)
 end)
 
 --- #
 --- # ARMOR
 --- #
-xAdmin.Core.RegisterCommand("armor", "Set a user's armor", 50, function(admin, args)
+xAdmin.Core.RegisterCommand("armor", "Set a user's armor", xAdmin.Config.PowerlevelPermissions["armor"], function(admin, args)
 	if not args or not args[1] or not args[2] then
 		return
 	end
@@ -132,7 +132,7 @@ xAdmin.Core.RegisterCommand("armor", "Set a user's armor", 50, function(admin, a
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
@@ -151,7 +151,7 @@ xAdmin.Core.RegisterCommand("armor", "Set a user's armor", 50, function(admin, a
 
 	if (Operation == 1) then
 		if (not tonumber(args[2])) then
-			xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, "'" .. args[2] .. "' is not a number/complete number. Please provide a valid number."}, admin)
+			xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "'" .. args[2] .. "' is not a number/complete number. Please provide a valid number."}, admin)
 
 			return
 		end
@@ -166,19 +166,19 @@ xAdmin.Core.RegisterCommand("armor", "Set a user's armor", 50, function(admin, a
 		local AddArmor = string.sub(args[2], 2, #args[2])
 
 		if (not tonumber(string.sub(args[2], 2, 2))) then
-			xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, "Unable to determine what operation to use with the value you specified."}, admin)
+			xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Unable to determine what operation to use with the value you specified."}, admin)
 
 			return
 		end
 
 		if (not tonumber(AddArmor)) then
-			xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, "'" .. AddArmor .. "' is not a number/complete number. Please provide a valid number."}, admin)
+			xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "'" .. AddArmor .. "' is not a number/complete number. Please provide a valid number."}, admin)
 
 			return
 		end
 
 		target:SetArmor(target:Armor() + tonumber(AddArmor))
-		xAdmin.Core.Msg({admin, " has added ", Color(255, 0, 0), AddArmor, color_white, " armor to ", target, "."})
+		xAdmin.Core.Msg({admin, " has added ", Color(255, 0, 0), AddArmor, xAdmin.Config.ColorLogText, " armor to ", target, "."})
 
 		return
 	end -- Add
@@ -187,36 +187,36 @@ xAdmin.Core.RegisterCommand("armor", "Set a user's armor", 50, function(admin, a
 		local RemoveArmor = string.sub(args[2], 2, #args[2])
 
 		if (not tonumber(string.sub(args[2], 2, 2))) then
-			xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, "Unable to determine what operation to use with the value you specified."}, admin)
+			xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Unable to determine what operation to use with the value you specified."}, admin)
 
 			return
 		end
 
 		if (not tonumber(RemoveArmor)) then
-			xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, "'" .. RemoveArmor .. "' is not a number/complete number. Please provide a valid number."}, admin)
+			xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "'" .. RemoveArmor .. "' is not a number/complete number. Please provide a valid number."}, admin)
 
 			return
 		end
 
 		if (target:Armor() - tonumber(RemoveArmor) <= 0) then
-			xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, "Unable to remove that much armor, as it will result in a armor value below zero."}, admin)
+			xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Unable to remove that much armor, as it will result in a armor value below zero."}, admin)
 
 			return
 		end
 
 		target:SetArmor(target:Armor() - tonumber(RemoveArmor))
-		xAdmin.Core.Msg({admin, " has removed ", Color(255, 0, 0), RemoveArmor, color_white, " armor from ", target, "."})
+		xAdmin.Core.Msg({admin, " has removed ", Color(255, 0, 0), RemoveArmor, xAdmin.Config.ColorLogText, " armor from ", target, "."})
 
 		return
 	end -- Remove
 
-	xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, "Unable to determine what operation to use with the value you specified."}, admin)
+	xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Unable to determine what operation to use with the value you specified."}, admin)
 end)
 
 --- #
 --- # GOD
 --- # 
-xAdmin.Core.RegisterCommand("god", "God a user", 40, function(admin, args)
+xAdmin.Core.RegisterCommand("god", "God a user", xAdmin.Config.PowerlevelPermissions["god"], function(admin, args)
 	if not args or not args[1] then
 		return
 	end
@@ -224,7 +224,7 @@ xAdmin.Core.RegisterCommand("god", "God a user", 40, function(admin, args)
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
@@ -236,7 +236,7 @@ end)
 --- #
 --- # UNGOD
 --- # 
-xAdmin.Core.RegisterCommand("ungod", "Ungod a user", 40, function(admin, args)
+xAdmin.Core.RegisterCommand("ungod", "Ungod a user", xAdmin.Config.PowerlevelPermissions["ungod"], function(admin, args)
 	if not args or not args[1] then
 		return
 	end
@@ -244,7 +244,7 @@ xAdmin.Core.RegisterCommand("ungod", "Ungod a user", 40, function(admin, args)
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
@@ -256,7 +256,7 @@ end)
 --- #
 --- # SLAY
 --- # 
-xAdmin.Core.RegisterCommand("slay", "Kill a user", 70, function(admin, args)
+xAdmin.Core.RegisterCommand("slay", "Kill a user", xAdmin.Config.PowerlevelPermissions["slay"], function(admin, args)
 	if not args or not args[1] then
 		return
 	end
@@ -264,7 +264,7 @@ xAdmin.Core.RegisterCommand("slay", "Kill a user", 70, function(admin, args)
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
@@ -273,10 +273,14 @@ xAdmin.Core.RegisterCommand("slay", "Kill a user", 70, function(admin, args)
 	xAdmin.Core.Msg({admin, " has slayed ", target})
 end)
 
+xAdmin.Core.RegisterCommand("kill", "Alias for slay", xAdmin.Config.PowerlevelPermissions["slay"], function(admin, args)
+	xAdmin.Commands["slay"].func(admin, args)
+end)
+
 --- #
 --- # REVIVE
 --- # 
-xAdmin.Core.RegisterCommand("revive", "Revive a user", 50, function(admin, args)
+xAdmin.Core.RegisterCommand("revive", "Revive a user", xAdmin.Config.PowerlevelPermissions["revive"], function(admin, args)
 	if not args or not args[1] then
 		return
 	end
@@ -284,13 +288,13 @@ xAdmin.Core.RegisterCommand("revive", "Revive a user", 50, function(admin, args)
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
 
 	if target:Alive() then
-		xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, target, " is already alive."}, admin)
+		xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, target, " is already alive."}, admin)
 
 		return
 	end
@@ -304,7 +308,7 @@ end)
 --- #
 --- # RESPAWN
 --- # 
-xAdmin.Core.RegisterCommand("respawn", "Respawn a user", 70, function(admin, args)
+xAdmin.Core.RegisterCommand("respawn", "Respawn a user", xAdmin.Config.PowerlevelPermissions["respawn"], function(admin, args)
 	if not args or not args[1] then
 		return
 	end
@@ -312,7 +316,7 @@ xAdmin.Core.RegisterCommand("respawn", "Respawn a user", 70, function(admin, arg
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
@@ -324,7 +328,7 @@ end)
 --- #
 --- # STRIP
 --- # 
-xAdmin.Core.RegisterCommand("strip", "Strip a user", 70, function(admin, args)
+xAdmin.Core.RegisterCommand("strip", "Strip a user", xAdmin.Config.PowerlevelPermissions["strip"], function(admin, args)
 	if not args or not args[1] then
 		return
 	end
@@ -332,7 +336,7 @@ xAdmin.Core.RegisterCommand("strip", "Strip a user", 70, function(admin, args)
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
@@ -340,11 +344,14 @@ xAdmin.Core.RegisterCommand("strip", "Strip a user", 70, function(admin, args)
 	target:StripWeapons()
 	xAdmin.Core.Msg({admin, " has stripped ", target})
 end)
+xAdmin.Core.RegisterCommand("stripweapons", "Alias for strip", xAdmin.Config.PowerlevelPermissions["strip"], function(admin, args)
+	xAdmin.Commands["strip"].func(admin, args)
+end)
 
 --- #
 --- # GIVE
 --- # 
-xAdmin.Core.RegisterCommand("give", "Give a user a weapon", 70, function(admin, args)
+xAdmin.Core.RegisterCommand("give", "Give a user a weapon", xAdmin.Config.PowerlevelPermissions["give"], function(admin, args)
 	if not args or not args[1] or not args[2] then
 		return
 	end
@@ -352,11 +359,14 @@ xAdmin.Core.RegisterCommand("give", "Give a user a weapon", 70, function(admin, 
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({Color(46, 170, 200), "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
 
 	target:Give(args[2] or "weapon_357")
 	xAdmin.Core.Msg({admin, " has given ", target, " a ", Color(138, 43, 226), args[2] or "weapon_357"})
+end)
+xAdmin.Core.RegisterCommand("giveweapon", "Alias for give", xAdmin.Config.PowerlevelPermissions["give"], function(admin, args)
+	xAdmin.Commands["give"].func(admin, args)
 end)

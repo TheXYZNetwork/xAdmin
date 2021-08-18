@@ -1,13 +1,13 @@
 --- #
 --- # SET USERGROUP
 --- #
-xAdmin.Core.RegisterCommand("setgroup", "Set a user's group", 100, function(admin, args)
+xAdmin.Core.RegisterCommand("setgroup", "Set a user's group", xAdmin.Config.PowerlevelPermissions["setgroup"], function(admin, args)
 	if not args or not args[1] or not args[2] then
 		return
 	end
 
 	if not xAdmin.Groups[args[2]] then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, args[2] .. " is not a valid usergroup"}, admin)
+		xAdmin.Core.Msg({xAdmin.Config.ColorLog, xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, args[2] .. " is not a valid usergroup"}, admin)
 
 		return
 	end
@@ -15,7 +15,7 @@ xAdmin.Core.RegisterCommand("setgroup", "Set a user's group", 100, function(admi
 	local target, targetPly = xAdmin.Core.GetID64(args[1], admin)
 
 	if not target then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({xAdmin.Config.ColorLog, xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
@@ -37,7 +37,7 @@ end)
 --- #
 --- # GET USERGROUP
 --- #
-xAdmin.Core.RegisterCommand("getgroup", "Get a user's group", 10, function(admin, args)
+xAdmin.Core.RegisterCommand("getgroup", "Get a user's group", xAdmin.Config.PowerlevelPermissions["getgroup"], function(admin, args)
 	if not args or not args[1] then
 		return
 	end
@@ -45,7 +45,7 @@ xAdmin.Core.RegisterCommand("getgroup", "Get a user's group", 10, function(admin
 	local targetID, target = xAdmin.Core.GetID64(args[1], admin)
 
 	if not targetID then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({xAdmin.Config.ColorLog, xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end

@@ -34,8 +34,12 @@ xAdmin.Config.Admin = 80 -- Admin
 xAdmin.Config.AdminChat = 30
 -- The color of admin chat
 xAdmin.Config.AdminChatColor = Color(0,150,255)
--- Color of the logs
+-- Color of the logs prefix
 xAdmin.Config.ColorLog = Color(46, 170, 200)
+-- Color of the logs (not the prefix)
+xAdmin.Config.ColorLogText = Color(255, 255, 255)
+-- Logs Prefix
+xAdmin.Config.LogPrefix = "[xAdmin] "
 -- Prop limit function
 xAdmin.Config.PropLimit = true
 xAdmin.Config.DefaultPropLimit = 25
@@ -45,6 +49,104 @@ xAdmin.Config.Name = "svr1"
 -- The unique name of this server. This will be used as a unique identifier in the bans archive
 xAdmin.Config.FullName = "Server 1"
 
+/*=============
+Physgun Config
+=============*/
+-- Master switch to disable / enable everything with Physgun in xAdmin
+-- You are required to have this true even if you only have one of the
+-- two features enabled!
+xAdmin.Config.EnablePhysgunFeatures = true
+
+-- Allow xAdmin to control staff picking people up with their physgun
+xAdmin.Config.PhysgunEnablePeople = true
+-- Power level that is allowed to pick people up with their physgun
+xAdmin.Config.PhysgunPickupPlayerPowerlevel = 30
+
+-- Allow xAdmin to control staff picking vehicles up with their physgun
+xAdmin.Config.PhysgunEnableVehicle = true
+xAdmin.Config.PhysgunPickupVehiclePowerlevel = 40
+
+-- Dont allow people who are frozen to spawn props
+xAdmin.Config.DisallowFrozenPropSpawning = true
+
+-- Require people to be a certain staff job to pick people up
+xAdmin.Config.PhysgunRequireJobToPickup = false
+xAdmin.Config.PhysgunJobsRequired = {
+	[TEAM_HOBO] = true,
+}
+
+/*=============
+Notes Config
+=============*/
+-- Enable or disable the Note Features
+xAdmin.Config.EnableNotesFeatures = true
+
+
+
+/*=============
+Permission Config
+=============*/
+-- This section of the config allows you to change what power levels
+-- can access different permissions from the base xAdmin addon
+
+-- to change what level can access Admin Chat see the option
+-- 'xAdmin.Config.AdminChat' above!
+-- Note: This also effects all aliases of the command
+xAdmin.Config.PowerlevelPermissions = {
+
+	-- Chat
+	["mute"] 		= 50,
+	["unmute"] 		= 50,
+	["gag"] 		= 50,
+	["ungag"] 		= 50,
+
+	-- DarkRP
+	["addmoney"] 	= 100,
+	["removemoney"] = 100,
+	["setmoney"] 	= 100,
+	["setjob"] 		= 100,
+
+	-- Dicipline
+	["kick"] 		= 30,
+	["ban"] 		= 40,
+	["unban"] 		= 50,
+
+	-- Fun
+	["cloak"] 		= 40,
+	["uncloak"] 	= 40,
+	["freeze"] 		= 30,
+	["unfreeze"] 	= 30,
+	["setmodel"] 	= 100,
+
+	-- Groups
+	["setgroup"] 	= 100,
+	["getgroup"] 	= 10,
+
+	-- Misc
+	["cleardecals"] = 40,
+	["freezeprops"] = 50,
+	["steamid"] 	= 0,
+
+	-- Teleport
+	["bring"]		= 30,
+	["return"] 		= 30,
+	["goto"] 		= 30,
+	["revtp"] 		= 50,
+
+	-- Util
+	["noclip"] 		= 30,
+	["health"] 		= 40,
+	["armor"] 		= 50,
+	["god"] 		= 40,
+	["ungod"] 		= 40,
+	["slay"] 		= 70,
+	["revive"] 		= 50,
+	["respawn"] 	= 70,
+	["strip"] 		= 70,
+	["give"] 		= 70,
+
+}
+
 /*===============
 Formatting Config
 =================*/
@@ -52,14 +154,19 @@ Formatting Config
 -- The chat prefix
 xAdmin.Config.Prefix = "!"
 
+-- PermaBan Length
+xAdmin.Config.StrForPermBan = "Forever"
+
 -- The ban message
--- The %s formatting order is: Banning admin, time left, ban reason
-xAdmin.Config.BanFormat = [[------------
+-- Valid Variables:
+-- {BANNED_BY} - Who banned you
+-- {TIME_LEFT} - Time left in your ban
+-- {REASON} - Reason
+xAdmin.Config.BanFormat = [[--------------------------
+--- You're Banned! ---
+Banned by: {BANNED_BY}
+Time left: {TIME_LEFT}
+Reason: {REASON}
 
--- Banned --
-Banned by: %s
-Time left: %s
-Reason: %s
-
-Feel you were false banned? Appeal it on the forums
-------------]]
+Appeal this punishment on our forums
+--------------------------]]
