@@ -2,11 +2,11 @@
 Permission Config
 =============*/
 -- This section of the config allows you to change what power levels
--- can access different permissions from the base xAdmin addon
+-- can access different permissions
 
 -- Default Powerlevel for commands if one isnt provided when
 -- registering the command
-xAdmin.Config.PowerLevelDefault = 0
+xAdmin.Config.PowerLevelDefault = 100
 
 -- to change what level can access Admin Chat see the option
 -- 'xAdmin.Config.AdminChat' above!
@@ -64,5 +64,11 @@ xAdmin.Config.PowerlevelPermissions = {
 	["strip"] 		= 70,
 	["give"] 		= 70,
 	["help"]		= 0,
+
+	-- Addon: xWarn --
+	["warn"]		= 30,
+	["warns"]		= 30,
+	["mywarns"]		= 0,
+	["deletewarn"]	= 40,
 
 }
