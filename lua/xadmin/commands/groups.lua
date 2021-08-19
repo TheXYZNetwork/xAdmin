@@ -7,7 +7,7 @@ xAdmin.Core.RegisterCommand("setgroup", "Set a user's group", xAdmin.Config.Powe
 	end
 
 	if not xAdmin.Groups[args[2]] then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, args[2] .. " is not a valid usergroup"}, admin)
+		xAdmin.Core.Msg({args[2] .. " is not a valid usergroup"}, admin)
 
 		return
 	end
@@ -15,7 +15,7 @@ xAdmin.Core.RegisterCommand("setgroup", "Set a user's group", xAdmin.Config.Powe
 	local target, targetPly = xAdmin.Core.GetID64(args[1], admin)
 
 	if not target then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({"Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
@@ -45,7 +45,7 @@ xAdmin.Core.RegisterCommand("getgroup", "Get a user's group", xAdmin.Config.Powe
 	local targetID, target = xAdmin.Core.GetID64(args[1], admin)
 
 	if not targetID then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({"Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end

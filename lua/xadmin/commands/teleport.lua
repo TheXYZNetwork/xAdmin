@@ -13,13 +13,13 @@ xAdmin.Core.RegisterCommand("bring", "Brings the target player", xAdmin.Config.P
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({"Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
 
 	if not target:Alive() then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, target, " is dead"}, admin)
+		xAdmin.Core.Msg({target, " is dead"}, admin)
 
 		return
 	end
@@ -49,19 +49,19 @@ xAdmin.Core.RegisterCommand("return", "Returns the target to their old position"
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({"Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
 
 	if not target:Alive() then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, target, " is dead"}, admin)
+		xAdmin.Core.Msg({target, " is dead"}, admin)
 
 		return
 	end
 
 	if not target.xAdminReturnPos then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, target, " has no previous location"}, admin)
+		xAdmin.Core.Msg({target, " has no previous location"}, admin)
 
 		return
 	end
@@ -91,19 +91,19 @@ xAdmin.Core.RegisterCommand("goto", "Teleports you to their position", xAdmin.Co
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({"Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
 
 	if not target:Alive() then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, target, " is dead"}, admin)
+		xAdmin.Core.Msg({target, " is dead"}, admin)
 
 		return
 	end
 
 	if not admin:Alive() then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "You are dead"}, admin)
+		xAdmin.Core.Msg({"You are dead"}, admin)
 
 		return
 	end
@@ -133,13 +133,13 @@ xAdmin.Core.RegisterCommand("revtp", "Revives and teleports the user", xAdmin.Co
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({"Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
 
 	if target:Alive() then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, target, " is already alive"}, admin)
+		xAdmin.Core.Msg({target, " is already alive"}, admin)
 
 		return
 	end

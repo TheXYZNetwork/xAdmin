@@ -14,7 +14,7 @@ Ranks Config
 -- These are the ranks that users can be. The first argument is the rank name, the 2nd is the power level and the 3rd is the prop limit set to nil for default value.
 
 -- Staff ranks
-xAdmin.Core.RegisterGroup("superadmin", 100, 100)
+xAdmin.Core.RegisterGroup("superadmin", 100, -1)
 xAdmin.Core.RegisterGroup("admin", 80, 40)
 xAdmin.Core.RegisterGroup("moderator", 50, 40)
 -- Paid ranks
@@ -39,10 +39,14 @@ xAdmin.Config.ColorLog = Color(46, 170, 200)
 -- Color of the logs (not the prefix)
 xAdmin.Config.ColorLogText = Color(255, 255, 255)
 -- Logs Prefix
-xAdmin.Config.LogPrefix = "[xAdmin] "
+xAdmin.Config.LogPrefix = "xAdmin | "
 -- Prop limit function
 xAdmin.Config.PropLimit = true
+xAdmin.Config.PropLimitNotify = true
 xAdmin.Config.DefaultPropLimit = 25
+xAdmin.Config.PropLimitInfinText = "Infinite" -- If you have a prop limit of -1 (infinite) than the prop limit will display in the message as this.
+-- Dont allow people who are frozen to spawn props
+xAdmin.Config.DisallowFrozenPropSpawning = true
 
 -- The table prefix used when making the unique tables. If you're running multiple servers this should be unique else they will share data
 xAdmin.Config.Name = "svr1"
@@ -64,88 +68,8 @@ xAdmin.Config.PhysgunPickupPlayerPowerlevel = 30
 
 -- Allow xAdmin to control staff picking vehicles up with their physgun
 xAdmin.Config.PhysgunEnableVehicle = true
+-- Power level that is allowed to pick vehicles up with their physgun
 xAdmin.Config.PhysgunPickupVehiclePowerlevel = 40
-
--- Dont allow people who are frozen to spawn props
-xAdmin.Config.DisallowFrozenPropSpawning = true
-
--- Require people to be a certain staff job to pick people up
-xAdmin.Config.PhysgunRequireJobToPickup = false
-xAdmin.Config.PhysgunJobsRequired = {
-	[TEAM_HOBO] = true,
-}
-
-/*=============
-Notes Config
-=============*/
--- Enable or disable the Note Features
-xAdmin.Config.EnableNotesFeatures = true
-
-
-
-/*=============
-Permission Config
-=============*/
--- This section of the config allows you to change what power levels
--- can access different permissions from the base xAdmin addon
-
--- to change what level can access Admin Chat see the option
--- 'xAdmin.Config.AdminChat' above!
--- Note: This also effects all aliases of the command
-xAdmin.Config.PowerlevelPermissions = {
-
-	-- Chat
-	["mute"] 		= 50,
-	["unmute"] 		= 50,
-	["gag"] 		= 50,
-	["ungag"] 		= 50,
-
-	-- DarkRP
-	["addmoney"] 	= 100,
-	["removemoney"] = 100,
-	["setmoney"] 	= 100,
-	["setjob"] 		= 100,
-
-	-- Dicipline
-	["kick"] 		= 30,
-	["ban"] 		= 40,
-	["unban"] 		= 50,
-
-	-- Fun
-	["cloak"] 		= 40,
-	["uncloak"] 	= 40,
-	["freeze"] 		= 30,
-	["unfreeze"] 	= 30,
-	["setmodel"] 	= 100,
-
-	-- Groups
-	["setgroup"] 	= 100,
-	["getgroup"] 	= 10,
-
-	-- Misc
-	["cleardecals"] = 40,
-	["freezeprops"] = 50,
-	["steamid"] 	= 0,
-
-	-- Teleport
-	["bring"]		= 30,
-	["return"] 		= 30,
-	["goto"] 		= 30,
-	["revtp"] 		= 50,
-
-	-- Util
-	["noclip"] 		= 30,
-	["health"] 		= 40,
-	["armor"] 		= 50,
-	["god"] 		= 40,
-	["ungod"] 		= 40,
-	["slay"] 		= 70,
-	["revive"] 		= 50,
-	["respawn"] 	= 70,
-	["strip"] 		= 70,
-	["give"] 		= 70,
-
-}
 
 /*===============
 Formatting Config
@@ -156,6 +80,15 @@ xAdmin.Config.Prefix = "!"
 
 -- PermaBan Length
 xAdmin.Config.StrForPermBan = "Forever"
+
+-- Enable the noclip warning
+xAdmin.Config.EnableNoclipWarning = true
+
+-- Warning sent in chat when running "noclip" concommand
+xAdmin.Config.NoclipWarning = {
+	"The noclip console command has been disabled.",
+	"To enable noclip do: !noclip",
+}
 
 -- The ban message
 -- Valid Variables:

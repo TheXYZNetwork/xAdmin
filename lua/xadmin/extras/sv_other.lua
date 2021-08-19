@@ -1,7 +1,7 @@
 if xAdmin.Config.EnablePhysgunFeatures and xAdmin.Config.DisallowFrozenPropSpawning then
     hook.Add("PlayerSpawnProp", "xAdmin:Frozen:Block", function(ply)
         if not ply:IsFrozen() then return end
-        
+        xAdmin.Core.Msg({"You can't spawn props while frozen."}, ply)
         return false
     end) 
 end

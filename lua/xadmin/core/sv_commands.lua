@@ -14,13 +14,12 @@ function xAdmin.Core.RegisterCommand(command, desc, power, func)
 		func = func
 	}
 end
-
 function xAdmin.Core.IsCommand(arg)
 	return xAdmin.Commands[arg] or false
 end
 
 for _, files in SortedPairs(file.Find("xadmin/commands/*.lua", "LUA"), true) do
-	print("Loading command file:", files)
+	print("[xAdmin] Loading commands located in: " .. files)
 	include("xadmin/commands/" .. files)
 end
 

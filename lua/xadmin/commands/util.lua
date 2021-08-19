@@ -22,6 +22,11 @@ xAdmin.Core.RegisterCommand("noclip", "Toggle a user's noclip", xAdmin.Config.Po
 end)
 
 hook.Add("PlayerNoClip", "xAdminBlockNoclip", function(ply, desiredState)
+	if SERVER then
+		for k, v in pairs(xAdmin.Config.NoclipWarning) do
+			xAdmin.Core.Msg({v}, ply)
+		end
+	end
 	return false
 end)
 
@@ -369,4 +374,25 @@ xAdmin.Core.RegisterCommand("give", "Give a user a weapon", xAdmin.Config.Powerl
 end)
 xAdmin.Core.RegisterCommand("giveweapon", "Alias for give", xAdmin.Config.PowerlevelPermissions["give"], function(admin, args)
 	xAdmin.Commands["give"].func(admin, args)
+end)
+-- xAdmin.CommandCache
+xAdmin.Core.RegisterCommand("help", "Get help with the addon.", xAdmin.Config.PowerlevelPermissions["help"], function(admin, args)
+	local str = ""
+	for k, v in pairs(xAdmin.Commands) do
+		if not admin:HasPower(v.power) then continue end
+		str = (str == "") and v.command or str .. ", " .. v.command
+	end
+
+	xAdmin.Core.Msg({"You have access to the following commands: " .. str}, target)
+end)
+
+xAdmin.Core.RegisterCommand("extrahelp", "Get more advanced help with the addon.", xAdmin.Config.PowerlevelPermissions["help"], function(admin, args)
+	local str = ""
+	for k, v in pairs(xAdmin.Commands) do
+		if not admin:HasPower(v.power) then continue end
+		str = str .. "\n" .. v.command .. " - " .. v.desc
+	end
+
+	xAdmin.Core.Msg({"You have access to the following commands: " .. str}, target)
+	xAdmin.Core.Msg({"Check console for a better view of the commands."}, target)
 end)

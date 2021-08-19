@@ -9,7 +9,7 @@ xAdmin.Core.RegisterCommand("kick", "Kicks the target player", xAdmin.Config.Pow
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({"Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
@@ -24,7 +24,7 @@ xAdmin.Core.RegisterCommand("kick", "Kicks the target player", xAdmin.Config.Pow
 	end
 
 	if target:HasPower(admin:GetGroupPower()) then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, target, " out powers you and thus you cannot kick them."}, admin)
+		xAdmin.Core.Msg({target, " out powers you and thus you cannot kick them."}, admin)
 
 		return
 	end
@@ -46,7 +46,7 @@ xAdmin.Core.RegisterCommand("ban", "Bans the target player", xAdmin.Config.Power
 	local target, targetPly = xAdmin.Core.GetID64(args[1], admin)
 
 	if not target then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({"Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
@@ -86,7 +86,7 @@ xAdmin.Core.RegisterCommand("ban", "Bans the target player", xAdmin.Config.Power
 
 	if IsValid(targetPly) then
 		if targetPly:HasPower(admin:GetGroupPower()) then
-			xAdmin.Core.Msg({xAdmin.Config.ColorLog, xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, targetPly, " out powers you and thus you cannot ban them."}, admin)
+			xAdmin.Core.Msg({targetPly, " out powers you and thus you cannot ban them."}, admin)
 
 			return
 		end
@@ -132,14 +132,14 @@ xAdmin.Core.RegisterCommand("unban", "Unbans the target id", xAdmin.Config.Power
 	local target, targetPly = xAdmin.Core.GetID64(args[1], admin)
 
 	if not target then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({"Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
 	
 	local canUnBan, msg = hook.Run("xAdminCanUnBan", admin, target)
 	if canUnBan == false then 
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, msg}, admin)
+		xAdmin.Core.Msg({msg}, admin)
 		return
 	end
 
