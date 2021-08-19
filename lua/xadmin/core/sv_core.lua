@@ -196,10 +196,6 @@ if xAdmin.Config.PropLimit then
 		local limit = ply:GetGroupTable().proplimit or xAdmin.Config.DefaultPropLimit
 		if not xAdmin.Config.PropLimitNotify then return end
 
-		if limit == -1 then
-			limit = xAdmin.Config.PropLimitInfinText
-		end
-
-		xAdmin.Core.Msg({string.format("You have spawned a prop. You're now at %s/%s", count, limit )}, ply)
+		xAdmin.Core.Msg({string.format("You have spawned a prop. You're now at %s/%s", count, (limit == -1) and xAdmin.Config.PropLimitInfinText or limit) }, ply)
 	end)
 end

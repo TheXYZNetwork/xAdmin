@@ -16,7 +16,7 @@ local function debugPrint(msg)
 	print("------------------------------------XADMIN DEBUG------------------------------------", msg)
 end
 
--- Load permissions before everything else to it doesnt break shit
+-- Load permissions before everything else so it doesnt break shit
 -- TOOD: Find a better, non shit way of doing this!
 if SERVER then
 	AddCSLuaFile("xadmin/_config/sh_permissions.lua")
@@ -25,7 +25,7 @@ else
 	include("xadmin/_config/sh_permissions.lua")
 end
 
-local intro = [[
+print([[
 --------------------------------------------------------------
 xAdmin - R.I.P PoliceRP.xyz
 --------------------------------------------------------------
@@ -41,9 +41,7 @@ https://github.com/NoSharp | 1
 https://github.com/Roni-sl | 1
 --------------------------------------------------------------
 
-]]
-
-print(intro)
+]])
 
 xAdmin.Core.Version = "1.5"
 

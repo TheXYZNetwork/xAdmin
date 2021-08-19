@@ -10,7 +10,7 @@ function xAdmin.Core.RegisterCommand(command, desc, power, func)
 	xAdmin.Commands[command] = {
 		command = command,
 		desc = desc or "n/a",
-		power = power or 0,
+		power = xAdmin.Config.PowerlevelPermissions[command] or xAdmin.Config.PowerLevelDefault,
 		func = func
 	}
 end

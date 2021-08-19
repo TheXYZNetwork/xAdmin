@@ -4,6 +4,10 @@ Permission Config
 -- This section of the config allows you to change what power levels
 -- can access different permissions from the base xAdmin addon
 
+-- Default Powerlevel for commands if one isnt provided when
+-- registering the command
+xAdmin.Config.PowerLevelDefault = 0
+
 -- to change what level can access Admin Chat see the option
 -- 'xAdmin.Config.AdminChat' above!
 -- Note: This also effects all aliases of the command

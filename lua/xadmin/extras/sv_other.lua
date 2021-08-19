@@ -20,6 +20,7 @@ function xAdmin.Utility.stringReplace(str, tbl)
     return str
 end
 
+-- Apply custom concommands
 for k, v in pairs(xAdmin.Config.CustomConsoleCommands) do
 	if v == true then
 		concommand.Add(k, function(ply, cmd, args, argStr)

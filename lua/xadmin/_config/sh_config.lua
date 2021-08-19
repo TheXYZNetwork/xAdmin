@@ -14,7 +14,7 @@ Ranks Config
 -- These are the ranks that users can be. The first argument is the rank name, the 2nd is the power level and the 3rd is the prop limit set to nil for default value.
 
 -- Staff ranks
-xAdmin.Core.RegisterGroup("superadmin", 100, -1)
+xAdmin.Core.RegisterGroup("superadmin", 100, -1) -- If the prop limit is -1, the group will be able to spawn infinite props
 xAdmin.Core.RegisterGroup("admin", 80, 40)
 xAdmin.Core.RegisterGroup("moderator", 50, 40)
 -- Paid ranks
@@ -45,12 +45,12 @@ xAdmin.Config.ColorLogText = Color(255, 255, 255)
 -- Color of the console if console does something
 xAdmin.Config.ColorConsole = Color(255, 0, 0)
 -- Logs Prefix
-xAdmin.Config.LogPrefix = "| "
+xAdmin.Config.LogPrefix = "xAdmin | "
 -- Prop limit function
 xAdmin.Config.PropLimit = true
 xAdmin.Config.PropLimitNotify = true
 xAdmin.Config.DefaultPropLimit = 25
-xAdmin.Config.PropLimitInfinText = "Infinite" -- If you have a prop limit of -1 (infinite) than the prop limit will display in the message as this.
+xAdmin.Config.PropLimitInfinText = "Infinite" -- If you have a prop limit of -1 (infinite) then the prop limit will display in the message as this.
 -- Dont allow people who are frozen to spawn props
 xAdmin.Config.DisallowFrozenPropSpawning = true
 
@@ -103,10 +103,15 @@ xAdmin.Config.StrForPermBan = "Forever"
 xAdmin.Config.EnableNoclipWarning = true
 
 -- Warning sent in chat when running "noclip" concommand
-xAdmin.Config.NoclipWarning = {
-	"The noclip console command has been disabled.",
-	"To enable noclip do: !noclip",
-}
+-- Fun Fact:
+-- You can also pass a table in this variable.
+-- Each element of the table will be printed on a new line with the prefix
+-- Example:
+-- xAdmin.Config.NoclipWarning = {
+-- 	"The noclip console command has been disabled.",
+-- 	"To enable noclip do: !noclip",
+-- }
+xAdmin.Config.NoclipWarning = "The noclip console command has been disabled.\nTo enable noclip do: !noclip"
 
 -- The ban message
 -- Valid Variables:

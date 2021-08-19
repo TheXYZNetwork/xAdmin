@@ -8,7 +8,7 @@ xAdmin.Core.RegisterCommand("noclip", "Toggle a user's noclip", xAdmin.Config.Po
 		target = xAdmin.Core.GetUser(args[1], admin)
 
 		if not IsValid(target) or admin.isConsole then
-			xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+			xAdmin.Core.Msg({xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 			return
 		end
@@ -23,8 +23,12 @@ end)
 
 hook.Add("PlayerNoClip", "xAdminBlockNoclip", function(ply, desiredState)
 	if SERVER then
-		for k, v in pairs(xAdmin.Config.NoclipWarning) do
-			xAdmin.Core.Msg({v}, ply)
+		if (istable(xAdmin.Config.NoclipWarning)) then
+			for k, v in pairs(xAdmin.Config.NoclipWarning) do
+				xAdmin.Core.Msg({v}, ply)
+			end
+		else
+			xAdmin.Core.Msg({xAdmin.Config.NoclipWarning}, ply)
 		end
 	end
 	return false
@@ -41,7 +45,7 @@ xAdmin.Core.RegisterCommand("health", "Set a user's health", xAdmin.Config.Power
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
@@ -60,7 +64,7 @@ xAdmin.Core.RegisterCommand("health", "Set a user's health", xAdmin.Config.Power
 
 	if (Operation == 1) then
 		if (not tonumber(args[2])) then
-			xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "'" .. args[2] .. "' is not a number/complete number. Please provide a valid number."}, admin)
+			xAdmin.Core.Msg({xAdmin.Config.ColorLogText, "'" .. args[2] .. "' is not a number/complete number. Please provide a valid number."}, admin)
 
 			return
 		end
@@ -75,13 +79,13 @@ xAdmin.Core.RegisterCommand("health", "Set a user's health", xAdmin.Config.Power
 		local AddHP = string.sub(args[2], 2, #args[2])
 
 		if (not tonumber(string.sub(args[2], 2, 2))) then
-			xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Unable to determine what operation to use with the value you specified."}, admin)
+			xAdmin.Core.Msg({xAdmin.Config.ColorLogText, "Unable to determine what operation to use with the value you specified."}, admin)
 
 			return
 		end
 
 		if (not tonumber(AddHP)) then
-			xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "'" .. AddHP .. "' is not a number/complete number. Please provide a valid number."}, admin)
+			xAdmin.Core.Msg({xAdmin.Config.ColorLogText, "'" .. AddHP .. "' is not a number/complete number. Please provide a valid number."}, admin)
 
 			return
 		end
@@ -96,19 +100,19 @@ xAdmin.Core.RegisterCommand("health", "Set a user's health", xAdmin.Config.Power
 		local RemoveHP = string.sub(args[2], 2, #args[2])
 
 		if (not tonumber(string.sub(args[2], 2, 2))) then
-			xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Unable to determine what operation to use with the value you specified."}, admin)
+			xAdmin.Core.Msg({xAdmin.Config.ColorLogText, "Unable to determine what operation to use with the value you specified."}, admin)
 
 			return
 		end
 
 		if (not tonumber(RemoveHP)) then
-			xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "'" .. RemoveHP .. "' is not a number/complete number. Please provide a valid number."}, admin)
+			xAdmin.Core.Msg({xAdmin.Config.ColorLogText, "'" .. RemoveHP .. "' is not a number/complete number. Please provide a valid number."}, admin)
 
 			return
 		end
 
 		if (target:Health() - tonumber(RemoveHP) <= 0) then
-			xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Unable to remove that much health, as it will result in a health value below zero."}, admin)
+			xAdmin.Core.Msg({xAdmin.Config.ColorLogText, "Unable to remove that much health, as it will result in a health value below zero."}, admin)
 
 			return
 		end
@@ -119,7 +123,7 @@ xAdmin.Core.RegisterCommand("health", "Set a user's health", xAdmin.Config.Power
 		return
 	end -- Remove
 
-	xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Unable to determine what operation to use with the value you specified."}, admin)
+	xAdmin.Core.Msg({xAdmin.Config.ColorLogText, "Unable to determine what operation to use with the value you specified."}, admin)
 end)
 
 xAdmin.Core.RegisterCommand("hp", "Alias for health", xAdmin.Config.PowerlevelPermissions["health"], function(admin, args)
@@ -137,7 +141,7 @@ xAdmin.Core.RegisterCommand("armor", "Set a user's armor", xAdmin.Config.Powerle
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
@@ -156,7 +160,7 @@ xAdmin.Core.RegisterCommand("armor", "Set a user's armor", xAdmin.Config.Powerle
 
 	if (Operation == 1) then
 		if (not tonumber(args[2])) then
-			xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "'" .. args[2] .. "' is not a number/complete number. Please provide a valid number."}, admin)
+			xAdmin.Core.Msg({xAdmin.Config.ColorLogText, "'" .. args[2] .. "' is not a number/complete number. Please provide a valid number."}, admin)
 
 			return
 		end
@@ -171,13 +175,13 @@ xAdmin.Core.RegisterCommand("armor", "Set a user's armor", xAdmin.Config.Powerle
 		local AddArmor = string.sub(args[2], 2, #args[2])
 
 		if (not tonumber(string.sub(args[2], 2, 2))) then
-			xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Unable to determine what operation to use with the value you specified."}, admin)
+			xAdmin.Core.Msg({xAdmin.Config.ColorLogText, "Unable to determine what operation to use with the value you specified."}, admin)
 
 			return
 		end
 
 		if (not tonumber(AddArmor)) then
-			xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "'" .. AddArmor .. "' is not a number/complete number. Please provide a valid number."}, admin)
+			xAdmin.Core.Msg({xAdmin.Config.ColorLogText, "'" .. AddArmor .. "' is not a number/complete number. Please provide a valid number."}, admin)
 
 			return
 		end
@@ -192,19 +196,19 @@ xAdmin.Core.RegisterCommand("armor", "Set a user's armor", xAdmin.Config.Powerle
 		local RemoveArmor = string.sub(args[2], 2, #args[2])
 
 		if (not tonumber(string.sub(args[2], 2, 2))) then
-			xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Unable to determine what operation to use with the value you specified."}, admin)
+			xAdmin.Core.Msg({xAdmin.Config.ColorLogText, "Unable to determine what operation to use with the value you specified."}, admin)
 
 			return
 		end
 
 		if (not tonumber(RemoveArmor)) then
-			xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "'" .. RemoveArmor .. "' is not a number/complete number. Please provide a valid number."}, admin)
+			xAdmin.Core.Msg({xAdmin.Config.ColorLogText, "'" .. RemoveArmor .. "' is not a number/complete number. Please provide a valid number."}, admin)
 
 			return
 		end
 
 		if (target:Armor() - tonumber(RemoveArmor) <= 0) then
-			xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Unable to remove that much armor, as it will result in a armor value below zero."}, admin)
+			xAdmin.Core.Msg({xAdmin.Config.ColorLogText, "Unable to remove that much armor, as it will result in a armor value below zero."}, admin)
 
 			return
 		end
@@ -215,7 +219,7 @@ xAdmin.Core.RegisterCommand("armor", "Set a user's armor", xAdmin.Config.Powerle
 		return
 	end -- Remove
 
-	xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Unable to determine what operation to use with the value you specified."}, admin)
+	xAdmin.Core.Msg({xAdmin.Config.ColorLogText, "Unable to determine what operation to use with the value you specified."}, admin)
 end)
 
 --- #
@@ -229,7 +233,7 @@ xAdmin.Core.RegisterCommand("god", "God a user", xAdmin.Config.PowerlevelPermiss
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
@@ -249,7 +253,7 @@ xAdmin.Core.RegisterCommand("ungod", "Ungod a user", xAdmin.Config.PowerlevelPer
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
@@ -269,7 +273,7 @@ xAdmin.Core.RegisterCommand("slay", "Kill a user", xAdmin.Config.PowerlevelPermi
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
@@ -293,13 +297,13 @@ xAdmin.Core.RegisterCommand("revive", "Revive a user", xAdmin.Config.PowerlevelP
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
 
 	if target:Alive() then
-		xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, target, " is already alive."}, admin)
+		xAdmin.Core.Msg({xAdmin.Config.ColorLogText, target, " is already alive."}, admin)
 
 		return
 	end
@@ -321,7 +325,7 @@ xAdmin.Core.RegisterCommand("respawn", "Respawn a user", xAdmin.Config.Powerleve
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
@@ -341,7 +345,7 @@ xAdmin.Core.RegisterCommand("strip", "Strip a user", xAdmin.Config.PowerlevelPer
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
@@ -364,7 +368,7 @@ xAdmin.Core.RegisterCommand("give", "Give a user a weapon", xAdmin.Config.Powerl
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({Color(46, 170, 200), xAdmin.Config.LogPrefix, xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({xAdmin.Config.ColorLogText, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
