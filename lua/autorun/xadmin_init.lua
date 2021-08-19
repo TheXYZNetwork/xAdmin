@@ -6,55 +6,93 @@ xAdmin = {
 	Groups = {},
 	Commands = {},
 	AdminChat = {},
+	Utility = {},
 	Github = true -- This can be used to identify the github xAdmin from the gmodstore xAdmin 
 }
 
-print("Loading xAdmin")
+local debugEnabled = false
+local function debugPrint(msg)
+	if not debugEnabled then return end
+	print("------------------------------------XADMIN DEBUG------------------------------------", msg)
+end
 
-xAdmin.Core.Version = "1.0"
-
-local path = "xadmin/"
-
+-- Load permissions before everything else so it doesnt break shit
+-- TOOD: Find a better, non shit way of doing this!
 if SERVER then
+	AddCSLuaFile("xadmin/_config/sh_permissions.lua")
+	include("xadmin/_config/sh_permissions.lua")
+else
+	include("xadmin/_config/sh_permissions.lua")
+end
+
+print([[
+--------------------------------------------------------------
+xAdmin - R.I.P PoliceRP.xyz
+--------------------------------------------------------------
+Contributers to xAdmin in order of commits:
+https://github.com/owainjones74 | 63
+https://github.com/MilkGames | 12
+https://github.com/realpack | 3
+https://github.com/ExtReMLapin | 2
+https://github.com/DrPepperG | 2
+https://github.com/Livaco | 2
+https://github.com/LivacoNew | 1
+https://github.com/NoSharp | 1
+https://github.com/Roni-sl | 1
+--------------------------------------------------------------
+
+]])
+
+xAdmin.Core.Version = "1.5"
+
+-- This is a little messy and hard to read
+local function loadFolder(path, ignore)
+	ignore = ignore or {}
+	print("[xAdmin] Loading folder: " .. path)
+
 	local files, folders = file.Find(path .. "*", "LUA")
 
-	for _, folder in SortedPairs(folders, true) do
-		print("Loading folder:", folder)
+	for k, v in SortedPairs(files) do
+		local name = path .. v
+		if ignore[name] == true then continue end
 
-		for b, File in SortedPairs(file.Find(path .. folder .. "/sh_*.lua", "LUA"), true) do
-			print("Loading file:", File)
-			AddCSLuaFile(path .. folder .. "/" .. File)
-			include(path .. folder .. "/" .. File)
-		end
+		print("[xAdmin] Loading File: " .. name)
 
-		for b, File in SortedPairs(file.Find(path .. folder .. "/sv_*.lua", "LUA"), true) do
-			print("Loading file:", File)
-			include(path .. folder .. "/" .. File)
-		end
+		if string.StartWith(v, "sh_") then
 
-		for b, File in SortedPairs(file.Find(path .. folder .. "/cl_*.lua", "LUA"), true) do
-			print("Loading file:", File)
-			AddCSLuaFile(path .. folder .. "/" .. File)
+			if SERVER then
+				AddCSLuaFile(name)
+				include(name)
+			elseif CLIENT then
+				include(name)
+			end
+
+			continue
+		elseif string.StartWith(v, "sv_") then
+
+			if SERVER then
+				include(name)
+				debugPrint(name)
+			end
+
+			continue
+		elseif string.StartWith(v, "cl_") then
+
+			if SERVER then
+				AddCSLuaFile(name)
+				debugPrint(name)
+			elseif CLIENT then
+				include(name)
+				debugPrint(name)
+			end
+
+			continue
 		end
 	end
 end
-
-if CLIENT then
-	local files, folders = file.Find(path .. "*", "LUA")
-
-	for _, folder in SortedPairs(folders, true) do
-		print("Loading folder:", folder)
-
-		for b, File in SortedPairs(file.Find(path .. folder .. "/sh_*.lua", "LUA"), true) do
-			print("Loading file:", File)
-			include(path .. folder .. "/" .. File)
-		end
-
-		for b, File in SortedPairs(file.Find(path .. folder .. "/cl_*.lua", "LUA"), true) do
-			print("Loading file:", File)
-			include(path .. folder .. "/" .. File)
-		end
-	end
-end
-
-print("Loaded xAdmin")
+loadFolder("xadmin/core/")
+loadFolder("xadmin/_config/", {
+	["xadmin/_config/sh_permissions.lua"] = true, -- We dont need to load it twice
+})
+loadFolder("xadmin/extras/")
+loadFolder("xadmin/commands/")

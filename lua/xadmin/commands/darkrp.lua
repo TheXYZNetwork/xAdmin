@@ -1,7 +1,10 @@
+-- Disable this module if we aren't running DarkRP to not cunfuse people
+-- Also makes sure DarkRP is running the latest version lol
+
 --- #
 --- # ADDMONEY
 --- #
-xAdmin.Core.RegisterCommand("addmoney", "[DarkRP] Gives the target X money", 100, function(admin, args)
+xAdmin.Core.RegisterCommand("addmoney", "[DarkRP] Gives the target X money", xAdmin.Config.PowerlevelPermissions["addmoney"], function(admin, args)
 	if not args or not args[1] then
 		return
 	end
@@ -11,7 +14,7 @@ xAdmin.Core.RegisterCommand("addmoney", "[DarkRP] Gives the target X money", 100
 	end
 
 	if not args[2] or not tonumber(args[2]) or tonumber(args[2]) <= 0 then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, "Please provid a valid amount you want to add to the target"}, admin)
+		xAdmin.Core.Msg({"Please provid a valid amount you want to add to the target"}, admin)
 
 		return
 	end
@@ -20,19 +23,19 @@ xAdmin.Core.RegisterCommand("addmoney", "[DarkRP] Gives the target X money", 100
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({"Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
 
-	xAdmin.Core.Msg({admin, " has added ", Color(0, 255, 0), DarkRP.formatMoney(args[2]), color_white, " to ", target})
+	xAdmin.Core.Msg({admin, " has added ", Color(0, 255, 0), DarkRP.formatMoney(args[2]), xAdmin.Config.ColorLogText, " to ", target})
 	target:addMoney(args[2])
 end)
 
 --- #
 --- # REMOVEMONEY
 --- #
-xAdmin.Core.RegisterCommand("removemoney", "[DarkRP] Takes X money from the target", 100, function(admin, args)
+xAdmin.Core.RegisterCommand("removemoney", "[DarkRP] Takes X money from the target", xAdmin.Config.PowerlevelPermissions["removemoney"], function(admin, args)
 	if not args or not args[1] then
 		return
 	end
@@ -42,7 +45,7 @@ xAdmin.Core.RegisterCommand("removemoney", "[DarkRP] Takes X money from the targ
 	end
 
 	if not args[2] or not tonumber(args[2]) or tonumber(args[2]) <= 0 then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, "Please provid a valid amount you want to add to the target"}, admin)
+		xAdmin.Core.Msg({"Please provid a valid amount you want to add to the target"}, admin)
 
 		return
 	end
@@ -51,19 +54,19 @@ xAdmin.Core.RegisterCommand("removemoney", "[DarkRP] Takes X money from the targ
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({"Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
 
-	xAdmin.Core.Msg({admin, " has taken ", Color(0, 255, 0), DarkRP.formatMoney(args[2]), color_white, " from ", target})
+	xAdmin.Core.Msg({admin, " has taken ", Color(0, 255, 0), DarkRP.formatMoney(args[2]), xAdmin.Config.ColorLogText, " from ", target})
 	target:addMoney(-args[2])
 end)
 
 --- #
 --- # SETMONEY
 --- #
-xAdmin.Core.RegisterCommand("setmoney", "[DarkRP] Sets the target's money to X", 100, function(admin, args)
+xAdmin.Core.RegisterCommand("setmoney", "[DarkRP] Sets the target's money to X", xAdmin.Config.PowerlevelPermissions["setmoney"], function(admin, args)
 	if not args or not args[1] then
 		return
 	end
@@ -73,7 +76,7 @@ xAdmin.Core.RegisterCommand("setmoney", "[DarkRP] Sets the target's money to X",
 	end
 
 	if not args[2] or not tonumber(args[2]) or tonumber(args[2]) <= 0 then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, "Please provid a valid amount you want to add to the target"}, admin)
+		xAdmin.Core.Msg({"Please provid a valid amount you want to add to the target"}, admin)
 
 		return
 	end
@@ -82,7 +85,7 @@ xAdmin.Core.RegisterCommand("setmoney", "[DarkRP] Sets the target's money to X",
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({"Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
@@ -94,7 +97,7 @@ end)
 --- #
 --- # SETJOB
 --- #
-xAdmin.Core.RegisterCommand("setjob", "[DarkRP] Sets the target's job", 100, function(admin, args)
+xAdmin.Core.RegisterCommand("setjob", "[DarkRP] Sets the target's job", xAdmin.Config.PowerlevelPermissions["setjob"], function(admin, args)
 	if not args or not args[1] then
 		return
 	end
@@ -104,7 +107,7 @@ xAdmin.Core.RegisterCommand("setjob", "[DarkRP] Sets the target's job", 100, fun
 	end
 
 	if not args[2] then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, "Please provide a valid target"}, admin)
+		xAdmin.Core.Msg({"Please provide a valid target"}, admin)
 
 		return
 	end
@@ -113,13 +116,13 @@ xAdmin.Core.RegisterCommand("setjob", "[DarkRP] Sets the target's job", 100, fun
 	local job = DarkRP.getJobByCommand(args[2])
 
 	if not job then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, "Please provide a valid job "}, admin)
+		xAdmin.Core.Msg({"Please provide a valid job "}, admin)
 
 		return
 	end
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({"Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end

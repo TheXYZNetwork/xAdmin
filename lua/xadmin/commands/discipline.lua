@@ -1,7 +1,7 @@
 --- #
 --- # KICK
 --- #
-xAdmin.Core.RegisterCommand("kick", "Kicks the target player", 30, function(admin, args)
+xAdmin.Core.RegisterCommand("kick", "Kicks the target player", xAdmin.Config.PowerlevelPermissions["kick"], function(admin, args)
 	if not args or not args[1] then
 		return
 	end
@@ -9,7 +9,7 @@ xAdmin.Core.RegisterCommand("kick", "Kicks the target player", 30, function(admi
 	local target = xAdmin.Core.GetUser(args[1], admin)
 
 	if not IsValid(target) then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({"Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
@@ -24,7 +24,7 @@ xAdmin.Core.RegisterCommand("kick", "Kicks the target player", 30, function(admi
 	end
 
 	if target:HasPower(admin:GetGroupPower()) then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, target, " out powers you and thus you cannot kick them."}, admin)
+		xAdmin.Core.Msg({target, " out powers you and thus you cannot kick them."}, admin)
 
 		return
 	end
@@ -38,7 +38,7 @@ end)
 --- #
 --- # BAN
 --- #
-xAdmin.Core.RegisterCommand("ban", "Bans the target player", 40, function(admin, args)
+xAdmin.Core.RegisterCommand("ban", "Bans the target player", xAdmin.Config.PowerlevelPermissions["ban"], function(admin, args)
 	if not args or not args[1] then
 		return
 	end
@@ -46,7 +46,7 @@ xAdmin.Core.RegisterCommand("ban", "Bans the target player", 40, function(admin,
 	local target, targetPly = xAdmin.Core.GetID64(args[1], admin)
 
 	if not target then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({"Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
@@ -86,27 +86,40 @@ xAdmin.Core.RegisterCommand("ban", "Bans the target player", 40, function(admin,
 
 	if IsValid(targetPly) then
 		if targetPly:HasPower(admin:GetGroupPower()) then
-			xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, targetPly, " out powers you and thus you cannot ban them."}, admin)
+			xAdmin.Core.Msg({targetPly, " out powers you and thus you cannot ban them."}, admin)
 
 			return
 		end
 
-		targetPly:Kick(string.format(xAdmin.Config.BanFormat, admin:Name(), (time == 0 and "Permanent") or string.NiceTime(time * 60), reason))
+		--targetPly:Kick(string.format(xAdmin.Config.BanFormat, admin:Name(), (time == 0 and "Permanent") or string.NiceTime(time * 60), reason))
+		targetPly:Kick(xAdmin.Utility.stringReplace(xAdmin.Config.BanFormat, {
+			["{BANNED_BY}"] = admin:Name(),
+			["{TIME_LEFT}"] = (time == 0 and xAdmin.Config.StrForPermBan) or string.NiceTime(time * 60),
+			["{REASON}"] = reason,
+		}))
 	end
 
-	xAdmin.Core.Msg({admin, " has banned ", ((IsValid(targetPly) and targetPly:Name()) or target), " for " .. ((time == 0 and "permanent") or string.NiceTime(time * 60)) .. " with the reason: " .. reason})
-	xAdmin.Database.CreateBan(target, (IsValid(targetPly) and targetPly:Name()) or "Unknown", admin:SteamID64(), admin:Name(), reason or "No reason given", time * 60, function(data, q)
-		hook.Run("xAdminPlayerBanned", ((IsValid(targetPly) and targetPly) or target), admin, reason, time * 60, q:lastInsert())
-	end)
+	xAdmin.Core.Msg({admin, " has banned ", ((IsValid(targetPly) and targetPly:Name()) or target), " for "..((time==0 and xAdmin.Config.StrForPermBan) or string.NiceTime(time*60)).." with the reason: "..reason})
+	xAdmin.Database.CreateBan(target, (IsValid(targetPly) and targetPly:Name()) or "Unknown", admin:SteamID64(), admin:Name(), reason or "No reason given", time*60, function(data, q)
+		hook.Run("xAdminPlayerBanned", ((IsValid(targetPly) and targetPly) or target), admin, reason, time * 60, 0)
+    end)
 end)
 
 hook.Add("CheckPassword", "xAdminCheckBanned", function(steamID64)
 	xAdmin.Database.IsBanned(steamID64, function(data)
 		if data and data[1] then
-			if data[1].duration == 0 then
-				game.KickID(util.SteamIDFrom64(steamID64), string.format(xAdmin.Config.BanFormat, data[1].admin, "Permanent", data[1].reason))
+			if tonumber(data[1].duration) == 0 then
+				game.KickID(util.SteamIDFrom64(steamID64), xAdmin.Utility.stringReplace(xAdmin.Config.BanFormat, {
+					["{BANNED_BY}"] = data[1].admin,
+					["{TIME_LEFT}"] = xAdmin.Config.StrForPermBan,
+					["{REASON}"] = data[1].reason,
+				}))
 			elseif (data[1].start + data[1].duration) > os.time() then
-				game.KickID(util.SteamIDFrom64(steamID64), string.format(xAdmin.Config.BanFormat, data[1].admin, string.NiceTime((data[1].start + data[1].duration) - os.time()), data[1].reason))
+				game.KickID(util.SteamIDFrom64(steamID64), xAdmin.Utility.stringReplace(xAdmin.Config.BanFormat, {
+					["{BANNED_BY}"] = data[1].admin,
+					["{TIME_LEFT}"] = string.NiceTime((data[1].start + data[1].duration) - os.time()),
+					["{REASON}"] = data[1].reason,
+				}))
 			else
 				xAdmin.Database.DestroyBan(steamID64)
 			end
@@ -117,7 +130,7 @@ end)
 --- #
 --- # UNBAN
 --- #
-xAdmin.Core.RegisterCommand("unban", "Unbans the target id", 50, function(admin, args)
+xAdmin.Core.RegisterCommand("unban", "Unbans the target id", xAdmin.Config.PowerlevelPermissions["unban"], function(admin, args)
 	if not args or not args[1] then
 		return
 	end
@@ -125,14 +138,14 @@ xAdmin.Core.RegisterCommand("unban", "Unbans the target id", 50, function(admin,
 	local target, targetPly = xAdmin.Core.GetID64(args[1], admin)
 
 	if not target then
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, "Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
+		xAdmin.Core.Msg({"Please provide a valid target. The following was not recognised: " .. args[1]}, admin)
 
 		return
 	end
 	
 	local canUnBan, msg = hook.Run("xAdminCanUnBan", admin, target)
 	if canUnBan == false then 
-		xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdmin] ", color_white, msg}, admin)
+		xAdmin.Core.Msg({msg}, admin)
 		return
 	end
 

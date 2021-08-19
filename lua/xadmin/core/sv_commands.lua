@@ -10,17 +10,16 @@ function xAdmin.Core.RegisterCommand(command, desc, power, func)
 	xAdmin.Commands[command] = {
 		command = command,
 		desc = desc or "n/a",
-		power = power or 0,
+		power = xAdmin.Config.PowerlevelPermissions[command] or xAdmin.Config.PowerLevelDefault,
 		func = func
 	}
 end
-
 function xAdmin.Core.IsCommand(arg)
 	return xAdmin.Commands[arg] or false
 end
 
 for _, files in SortedPairs(file.Find("xadmin/commands/*.lua", "LUA"), true) do
-	print("Loading command file:", files)
+	print("[xAdmin] Loading commands located in: " .. files)
 	include("xadmin/commands/" .. files)
 end
 
@@ -56,12 +55,13 @@ concommand.Add("xadmin", function(ply, cmd, args, argStr)
 end)
 
 hook.Add("PlayerSay", "xAdminChatCommands", function(ply, msg)
-	if string.sub(msg, 1, 1) == xAdmin.Config.Prefix then
+	if string.sub(msg, 1, #xAdmin.Config.Prefix) == xAdmin.Config.Prefix then
 		local args = xAdmin.Core.FormatArguments(string.Explode(" ", msg))
-		args[1] = string.sub(args[1], 2)
+		args[1] = string.sub(args[1], #xAdmin.Config.Prefix + 1)
 		local command = xAdmin.Core.IsCommand(string.lower(args[1]))
 
 		if command and ply:HasPower(command.power) then
+			local cmdName = args[1]
 			table.remove(args, 1)
 				
 			if hook.Run("xAdminCanRunCommand", ply, command.command, args, false) == false then
@@ -69,6 +69,10 @@ hook.Add("PlayerSay", "xAdminChatCommands", function(ply, msg)
 			end
 				
 			command.func(ply, args)
+
+			--print("[xAdmin] " .. ply:Nick() .. " [" .. ply:SteamID() .. "] ran command " .. args[1] .. ": " .. msg)
+
+			return ""
 		end
 	end
 end)

@@ -35,7 +35,7 @@ concommand.Add("xadmin_help", function()
 end)
 
 function xAdmin.Core.Msg(args)
-	chat.AddText(unpack(args))
+	chat.AddText(xAdmin.Config.ColorLog, xAdmin.Config.LogPrefix, unpack(args))
 end
 
 net.Receive("xAdminChatMessage", function()
