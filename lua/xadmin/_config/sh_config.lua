@@ -119,4 +119,4 @@ Banned by: {BANNED_BY}
 Time left: {TIME_LEFT}
 Reason: {REASON}
 
-Contact staff to appeal this punishment.]]
+Contact staff to appeal this punishment]]
