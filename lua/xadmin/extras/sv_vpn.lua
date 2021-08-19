@@ -59,7 +59,6 @@ function xAdmin.VPN.Check(ply)
 
 			if not results then return end
 			if results.proxy == "yes" then
-				-- xAdmin.VPN.PowerLevel
 				-- xAdmin.Prevent.Post("VPN Detected", ply, "This user has been detected as using a VPN."..(results.provider and string.format(" The VPN provider was found to be **%s**.", results.provider) or ""), "9442302", true)
 				for k, v in pairs(player.GetAll()) do
 					if v:HasPower(xAdmin.VPN.PowerLevel) then
