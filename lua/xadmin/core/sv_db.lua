@@ -45,15 +45,15 @@ function xAdmin.Database.Connect()
 		xAdmin.Config.Name = "xadmin"
 
 		if not sql.TableExists("xadmin_active_bans") then
-			print("[xAdmin] Creating MySQL Table: xadmin_active_bans")
+			print("xadmin_active_bans")
 			sql.Query("CREATE TABLE IF NOT EXISTS xadmin_active_bans(userid VARCHAR(32) NOT NULL PRIMARY KEY, user TEXT NOT NULL, adminid VARCHAR(32) NOT NULL, admin TEXT NOT NULL, reason TEXT NOT NULL, start INT(11) NOT NULL, duration INT(11) NOT NULL)")
 		end
 		if not sql.TableExists("xadmin_users") then
-			print("[xAdmin] Creating MySQL Table: xadmin_users")
+			print("xadmin_users")
 			sql.Query("CREATE TABLE IF NOT EXISTS xadmin_users(userid VARCHAR(32) NOT NULL PRIMARY KEY, `rank` TEXT NOT NULL)")
 		end
 		if not sql.TableExists("xadmin_ban_archive") then
-			print("[xAdmin] Creating MySQL Table: xadmin_ban_archive")
+			print("xadmin_ban_archive")
 			sql.Query("CREATE TABLE IF NOT EXISTS xadmin_ban_archive(id INTEGER PRIMARY KEY AUTOINCREMENT, userid VARCHAR(32) NOT NULL, user TEXT NOT NULL, adminid VARCHAR(32) NOT NULL, admin TEXT NOT NULL, reason TEXT NOT NULL, server TEXT NOT NULL, start INT(11) NOT NULL, duration INT(11) NOT NULL)")
 		end
 		hook.Run( "xAdminPostInit" )

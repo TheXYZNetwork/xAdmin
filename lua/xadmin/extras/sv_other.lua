@@ -19,3 +19,16 @@ function xAdmin.Utility.stringReplace(str, tbl)
 
     return str
 end
+
+for k, v in pairs(xAdmin.Config.CustomConsoleCommands) do
+	if v == true then
+		concommand.Add(k, function(ply, cmd, args, argStr)
+			if IsValid(ply) then
+				ply:ConCommand("xadmin " .. argStr)
+			else
+				-- Assume we're console
+				RunConsoleCommand("xadmin", unpack(args))
+			end
+		end)
+	end
+end

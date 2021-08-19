@@ -91,32 +91,38 @@ xAdmin.Core.RegisterCommand("ban", "Bans the target player", xAdmin.Config.Power
 			return
 		end
 
-		targetPly:Kick(string.format(xAdmin.Config.BanFormat, admin:Name(), (time == 0 and "Permanent") or string.NiceTime(time * 60), reason))
+		--targetPly:Kick(string.format(xAdmin.Config.BanFormat, admin:Name(), (time == 0 and "Permanent") or string.NiceTime(time * 60), reason))
+		targetPly:Kick(xAdmin.Utility.stringReplace(xAdmin.Config.BanFormat, {
+			["{BANNED_BY}"] = admin:Name(),
+			["{TIME_LEFT}"] = (time == 0 and xAdmin.Config.StrForPermBan) or string.NiceTime(time * 60),
+			["{REASON}"] = reason,
+		}))
 	end
 
-	xAdmin.Core.Msg({admin, " has banned ", ((IsValid(targetPly) and targetPly:Name()) or target), " for " .. ((time == 0 and "permanent") or string.NiceTime(time * 60)) .. " with the reason: " .. reason})
-	xAdmin.Database.CreateBan(target, (IsValid(targetPly) and targetPly:Name()) or "Unknown", admin:SteamID64(), admin:Name(), reason or "No reason given", time * 60, function(data, q)
-		hook.Run("xAdminPlayerBanned", ((IsValid(targetPly) and targetPly) or target), admin, reason, time * 60, q:lastInsert())
-	end)
+	xAdmin.Core.Msg({admin, " has banned ", ((IsValid(targetPly) and targetPly:Name()) or target), " for "..((time==0 and xAdmin.Config.StrForPermBan) or string.NiceTime(time*60)).." with the reason: "..reason})
+	xAdmin.Database.CreateBan(target, (IsValid(targetPly) and targetPly:Name()) or "Unknown", admin:SteamID64(), admin:Name(), reason or "No reason given", time*60, function(data, q)
+		hook.Run("xAdminPlayerBanned", ((IsValid(targetPly) and targetPly) or target), admin, reason, time * 60, 0)
+    end)
 end)
 
 hook.Add("CheckPassword", "xAdminCheckBanned", function(steamID64)
 	xAdmin.Database.IsBanned(steamID64, function(data)
 		if data and data[1] then
-			local timeVar = (data[1].duration == 0) and xAdmin.Config.xAdmin.Config.StrForPermBan or string.NiceTime((data[1].start + data[1].duration) - os.time()),
-			// if data[1].duration == 0 then
-			// 	game.KickID(util.SteamIDFrom64(steamID64), string.format(xAdmin.Config.BanFormat, data[1].admin, "Permanent", data[1].reason))
-			// elseif (data[1].start + data[1].duration) > os.time() then
-			// 	game.KickID(util.SteamIDFrom64(steamID64), string.format(xAdmin.Config.BanFormat, data[1].admin, string.NiceTime((data[1].start + data[1].duration) - os.time()), data[1].reason))
-			// else
-			// 	xAdmin.Database.DestroyBan(steamID64)
-			// end
-
-			game.KickID(util.SteamIDFrom64(steamID64), xAdmin.Utility.stringReplace(xAdmin.Config.BanFormat, {
-				["{BANNED_BY}"] = data[1].admin,
-				["{TIME_LEFT}"] = timeVar,
-				["{REASON}"] = data[1].reason,
-			}))
+			if tonumber(data[1].duration) == 0 then
+				game.KickID(util.SteamIDFrom64(steamID64), xAdmin.Utility.stringReplace(xAdmin.Config.BanFormat, {
+					["{BANNED_BY}"] = data[1].admin,
+					["{TIME_LEFT}"] = xAdmin.Config.StrForPermBan,
+					["{REASON}"] = data[1].reason,
+				}))
+			elseif (data[1].start + data[1].duration) > os.time() then
+				game.KickID(util.SteamIDFrom64(steamID64), xAdmin.Utility.stringReplace(xAdmin.Config.BanFormat, {
+					["{BANNED_BY}"] = data[1].admin,
+					["{TIME_LEFT}"] = string.NiceTime((data[1].start + data[1].duration) - os.time()),
+					["{REASON}"] = data[1].reason,
+				}))
+			else
+				xAdmin.Database.DestroyBan(steamID64)
+			end
 		end
 	end)
 end)

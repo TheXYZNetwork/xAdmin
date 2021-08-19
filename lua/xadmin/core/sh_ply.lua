@@ -33,7 +33,7 @@ function ply:IsUserGroup(group)
 end
 
 function ply:HasPower(power)
-	return self:GetGroupPower() >= power
+	return self:GetGroupPower() > power
 end
 
 function ply:SetUserGroup(group)

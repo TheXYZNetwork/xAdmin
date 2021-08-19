@@ -33,7 +33,11 @@ xAdmin.Config.Admin = 80 -- Admin
 -- The power level that can see admin chat
 xAdmin.Config.AdminChat = 30
 -- The color of admin chat
-xAdmin.Config.AdminChatColor = Color(0,150,255)
+xAdmin.Config.AdminChatColor = Color(255,255,255)
+-- Admin Chat Prefix Color
+xAdmin.Config.AdminChatPrefixColor = Color(46, 170, 200)
+-- Admin Chat Prefix
+xAdmin.Config.AdminChatPrefixText = "[Admin Chat] "
 -- Color of the logs prefix
 xAdmin.Config.ColorLog = Color(46, 170, 200)
 -- Color of the logs (not the prefix)
@@ -89,6 +93,9 @@ Formatting Config
 -- The chat prefix
 xAdmin.Config.Prefix = "!"
 
+-- Admin Chat Prefix
+xAdmin.Config.AdminChatPrefix = "@"
+
 -- PermaBan Length
 xAdmin.Config.StrForPermBan = "Forever"
 
@@ -106,11 +113,10 @@ xAdmin.Config.NoclipWarning = {
 -- {BANNED_BY} - Who banned you
 -- {TIME_LEFT} - Time left in your ban
 -- {REASON} - Reason
-xAdmin.Config.BanFormat = [[--------------------------
---- You're Banned! ---
+xAdmin.Config.BanFormat = [[
+>>> You're Banned! <<<
 Banned by: {BANNED_BY}
 Time left: {TIME_LEFT}
 Reason: {REASON}
 
-Appeal this punishment on our forums
---------------------------]]
+Contact staff to appeal this punishment.]]

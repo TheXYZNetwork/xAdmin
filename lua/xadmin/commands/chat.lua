@@ -100,9 +100,9 @@ end)
 --- # ADMINCHAT
 --- #
 hook.Add("PlayerSay", "xAdminAdminChat", function(ply, text)
-	if string.sub(text, 1, 1) == "@" and ply:HasPower(xAdmin.Config.AdminChat) then
+	if string.sub(text, 1, #xAdmin.Config.AdminChatPrefix) == xAdmin.Config.AdminChatPrefix and ply:HasPower(xAdmin.Config.AdminChat) then
 		for k, v in pairs(xAdmin.AdminChat) do
-			xAdmin.Core.Msg({xAdmin.Config.ColorLog, "[xAdminChat] ", ply, xAdmin.Config.ColorLogText, ": ", xAdmin.Config.AdminChatColor, string.TrimLeft(string.sub(text, 2))}, v)
+			xAdmin.Core.Msg({xAdmin.Config.AdminChatPrefixColor, xAdmin.Config.AdminChatPrefixText, ply, xAdmin.Config.ColorLogText, ": ", xAdmin.Config.AdminChatColor, string.TrimLeft(string.sub(text, #xAdmin.Config.AdminChatPrefix + 1))}, v)
 		end
 
 		return ""

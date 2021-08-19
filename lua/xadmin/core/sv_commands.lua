@@ -54,19 +54,6 @@ concommand.Add("xadmin", function(ply, cmd, args, argStr)
 	comTbl.func(ply, formattedArgs)
 end)
 
-for k, v in pairs(xAdmin.Config.CustomConsoleCommands) do
-	if v == true then
-		concommand.Add(k, function(ply, cmd, args, argStr)
-			if IsValid(ply) then
-				ply:ConCommand("xadmin " .. argStr)
-			else
-				-- Assume we're console
-				RunConsoleCommand("xadmin", unpack(args))
-			end
-		end)
-	end
-end
-
 hook.Add("PlayerSay", "xAdminChatCommands", function(ply, msg)
 	if string.sub(msg, 1, #xAdmin.Config.Prefix) == xAdmin.Config.Prefix then
 		local args = xAdmin.Core.FormatArguments(string.Explode(" ", msg))
