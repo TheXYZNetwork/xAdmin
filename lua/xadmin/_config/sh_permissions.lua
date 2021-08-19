@@ -6,6 +6,7 @@ Permission Config
 
 -- Default Powerlevel for commands if one isnt provided when
 -- registering the command
+-- >>> ANY COMMAND FROM ANY ADDON WILL HAVE THIS POWERLEVEL UNLESS CHANGED BY THE BELOW TABLE <<<
 xAdmin.Config.PowerLevelDefault = 100
 
 -- to change what level can access Admin Chat see the option
