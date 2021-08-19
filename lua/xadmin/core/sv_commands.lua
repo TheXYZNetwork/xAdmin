@@ -54,13 +54,27 @@ concommand.Add("xadmin", function(ply, cmd, args, argStr)
 	comTbl.func(ply, formattedArgs)
 end)
 
+for k, v in pairs(xAdmin.Config.CustomConsoleCommands) do
+	if v == true then
+		concommand.Add(k, function(ply, cmd, args, argStr)
+			if IsValid(ply) then
+				ply:ConCommand("xadmin " .. argStr)
+			else
+				-- Assume we're console
+				RunConsoleCommand("xadmin", unpack(args))
+			end
+		end)
+	end
+end
+
 hook.Add("PlayerSay", "xAdminChatCommands", function(ply, msg)
-	if string.sub(msg, 1, 1) == xAdmin.Config.Prefix then
+	if string.sub(msg, 1, #xAdmin.Config.Prefix) == xAdmin.Config.Prefix then
 		local args = xAdmin.Core.FormatArguments(string.Explode(" ", msg))
-		args[1] = string.sub(args[1], 2)
+		args[1] = string.sub(args[1], #xAdmin.Config.Prefix + 1)
 		local command = xAdmin.Core.IsCommand(string.lower(args[1]))
 
 		if command and ply:HasPower(command.power) then
+			local cmdName = args[1]
 			table.remove(args, 1)
 				
 			if hook.Run("xAdminCanRunCommand", ply, command.command, args, false) == false then
@@ -68,6 +82,10 @@ hook.Add("PlayerSay", "xAdminChatCommands", function(ply, msg)
 			end
 				
 			command.func(ply, args)
+
+			--print("[xAdmin] " .. ply:Nick() .. " [" .. ply:SteamID() .. "] ran command " .. args[1] .. ": " .. msg)
+
+			return ""
 		end
 	end
 end)

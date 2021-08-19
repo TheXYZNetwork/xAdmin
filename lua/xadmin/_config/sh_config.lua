@@ -38,8 +38,10 @@ xAdmin.Config.AdminChatColor = Color(0,150,255)
 xAdmin.Config.ColorLog = Color(46, 170, 200)
 -- Color of the logs (not the prefix)
 xAdmin.Config.ColorLogText = Color(255, 255, 255)
+-- Color of the console if console does something
+xAdmin.Config.ColorConsole = Color(255, 0, 0)
 -- Logs Prefix
-xAdmin.Config.LogPrefix = "xAdmin | "
+xAdmin.Config.LogPrefix = "| "
 -- Prop limit function
 xAdmin.Config.PropLimit = true
 xAdmin.Config.PropLimitNotify = true
@@ -52,6 +54,15 @@ xAdmin.Config.DisallowFrozenPropSpawning = true
 xAdmin.Config.Name = "svr1"
 -- The unique name of this server. This will be used as a unique identifier in the bans archive
 xAdmin.Config.FullName = "Server 1"
+
+-- Custom Concommands
+-- For instance, putting "ulx" in here will let people use 'ulx slay lion' in console
+-- even though we are using xAdmin (hopefully)
+-- THIS MIGHT CAUSE ERRORS WITH OTHER ADDONS
+xAdmin.Config.CustomConsoleCommands = {
+	["ulx"] = true,
+	["sam"] = true,
+}
 
 /*=============
 Physgun Config

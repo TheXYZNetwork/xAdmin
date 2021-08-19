@@ -142,7 +142,7 @@ function xAdmin.Core.Msg(args, target)
 	for k, v in pairs(args) do
 		if istable(v) and v.isConsole then
 			args[k] = v:Name()
-			table.insert(args, k, Color(0, 0, 0))
+			table.insert(args, k, xAdmin.Config.ColorConsole)
 			table.insert(args, k + 2, Color(215, 215, 215))
 		end
 	end

@@ -1,14 +1,5 @@
 -- Disable this module if we aren't running DarkRP to not cunfuse people
 -- Also makes sure DarkRP is running the latest version lol
-if not DarkRP then return end
-local meta = FindMetaTable("Player")
-local function isRunningLatestDarkRP()
-	if meta.AddMoney then
-		return false
-	end
-	return true
-end
-if not isRunningLatestDarkRP() then return end
 
 --- #
 --- # ADDMONEY
