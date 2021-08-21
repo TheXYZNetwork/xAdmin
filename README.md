@@ -1,6 +1,6 @@
 # xAdmin
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 A free and basic administration system for Garry's Mod.
 
@@ -65,6 +65,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/cl3dev"><img src="https://avatars.githubusercontent.com/u/28488690?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Luke</b></sub></a><br /><a href="https://github.com/TheXYZNetwork/xAdmin/commits?author=cl3dev" title="Code">💻</a></td>
     <td align="center"><a href="https://nosharp.cc/"><img src="https://avatars.githubusercontent.com/u/33969918?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Harry Kerr</b></sub></a><br /><a href="https://github.com/TheXYZNetwork/xAdmin/commits?author=NoSharp" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/liondadev"><img src="https://avatars.githubusercontent.com/u/59421259?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Lion</b></sub></a><br /><a href="https://github.com/TheXYZNetwork/xAdmin/commits?author=liondadev" title="Code">💻</a></td>
   </tr>
 </table>
 
