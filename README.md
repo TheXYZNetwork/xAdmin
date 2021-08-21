@@ -1,6 +1,6 @@
 # xAdmin
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 A free and basic administration system for Garry's Mod.
 
@@ -58,6 +58,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://jakebutterfield.co.uk/"><img src="https://avatars.githubusercontent.com/u/12650145?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jake Butterfield</b></sub></a><br /><a href="https://github.com/TheXYZNetwork/xAdmin/commits?author=JakeButterfield" title="Code">💻</a></td>
     <td align="center"><a href="https://jcra.dev/"><img src="https://avatars.githubusercontent.com/u/17168168?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Dr.Pepper</b></sub></a><br /><a href="https://github.com/TheXYZNetwork/xAdmin/commits?author=DrPepperG" title="Code">💻</a></td>
     <td align="center"><a href="https://www.livaco.dev/"><img src="https://avatars.githubusercontent.com/u/15859232?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Livaco</b></sub></a><br /><a href="https://github.com/TheXYZNetwork/xAdmin/commits?author=Livaco" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/ExtReMLapin"><img src="https://avatars.githubusercontent.com/u/3909752?v=4?s=100" width="100px;" alt=""/><br /><sub><b>ExtReMLapin</b></sub></a><br /><a href="https://github.com/TheXYZNetwork/xAdmin/commits?author=ExtReMLapin" title="Code">💻</a></td>
   </tr>
 </table>
 
