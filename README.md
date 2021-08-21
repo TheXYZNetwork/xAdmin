@@ -1,6 +1,6 @@
 # xAdmin
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 A free and basic administration system for Garry's Mod.
 
@@ -61,6 +61,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/ExtReMLapin"><img src="https://avatars.githubusercontent.com/u/3909752?v=4?s=100" width="100px;" alt=""/><br /><sub><b>ExtReMLapin</b></sub></a><br /><a href="https://github.com/TheXYZNetwork/xAdmin/commits?author=ExtReMLapin" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/realpack"><img src="https://avatars.githubusercontent.com/u/19867624?v=4?s=100" width="100px;" alt=""/><br /><sub><b>pack</b></sub></a><br /><a href="https://github.com/TheXYZNetwork/xAdmin/commits?author=realpack" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/MilkGames"><img src="https://avatars.githubusercontent.com/u/10010026?v=4?s=100" width="100px;" alt=""/><br /><sub><b>MilkGames</b></sub></a><br /><a href="https://github.com/TheXYZNetwork/xAdmin/commits?author=MilkGames" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/cl3dev"><img src="https://avatars.githubusercontent.com/u/28488690?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Luke</b></sub></a><br /><a href="https://github.com/TheXYZNetwork/xAdmin/commits?author=cl3dev" title="Code">💻</a></td>
   </tr>
 </table>
 
