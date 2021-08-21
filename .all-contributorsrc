@@ -37,6 +37,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Livaco",
+      "name": "Livaco",
+      "avatar_url": "https://avatars.githubusercontent.com/u/15859232?v=4",
+      "profile": "https://www.livaco.dev/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7
