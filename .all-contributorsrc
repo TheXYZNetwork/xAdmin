@@ -1,0 +1,25 @@
+{
+  "projectName": "xAdmin",
+  "projectOwner": "TheXYZNetwork",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "none",
+  "contributors": [
+    {
+      "login": "owainjones74",
+      "name": "Owain",
+      "avatar_url": "https://avatars.githubusercontent.com/u/15251181?v=4",
+      "profile": "https://0wain.xyz/",
+      "contributions": [
+        "code",
+        "maintenance"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}
