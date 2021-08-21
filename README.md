@@ -34,17 +34,6 @@ Here is a list of verififed or official xAdmin extensions. They're either made b
 - [**xWarn**](https://github.com/TheXYZNetwork/xWarn) - An addon for xAdmin that allows you to warn players for breaking the rules.
 - [**xSGroups**](https://github.com/TheXYZNetwork/xSGroups) - An addon for xAdmin that allows you to set a secondary usergroup in addition to their primary usergroup.
 
-## Credits
-- [Owain](https://github.com/OwjoTheGreat)
-- [Jake](https://github.com/JakeButterfield)
-- [Dr.Pepper](https://github.com/DrPepperG)
-- [Livaco](https://github.com/Livaco)
-- [Lapin](https://github.com/ExtReMLapin)
-- [pack](https://github.com/realpack)
-- [MilkGames](https://github.com/MilkGames)
-- [CL34R](https://github.com/CL34Rdev)
-- [NoSharp](https://github.com/NoSharp)
-
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
