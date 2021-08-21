@@ -82,6 +82,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "NoSharp",
+      "name": "Harry Kerr",
+      "avatar_url": "https://avatars.githubusercontent.com/u/33969918?v=4",
+      "profile": "https://nosharp.cc/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7
