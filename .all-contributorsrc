@@ -19,6 +19,15 @@
         "code",
         "maintenance"
       ]
+    },
+    {
+      "login": "JakeButterfield",
+      "name": "Jake Butterfield",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12650145?v=4",
+      "profile": "http://jakebutterfield.co.uk/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7
