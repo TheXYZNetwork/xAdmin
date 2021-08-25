@@ -21,6 +21,8 @@ end
 if SERVER then
 	AddCSLuaFile("xadmin/_config/sh_permissions.lua")
 	include("xadmin/_config/sh_permissions.lua")
+
+	include("xadmin/core/sv_db.lua")
 else
 	include("xadmin/_config/sh_permissions.lua")
 end
@@ -90,7 +92,9 @@ local function loadFolder(path, ignore)
 		end
 	end
 end
-loadFolder("xadmin/core/")
+loadFolder("xadmin/core/", {
+	["xadmin/core/sv_db.lua"] = true,
+})
 loadFolder("xadmin/_config/", {
 	["xadmin/_config/sh_permissions.lua"] = true, -- We dont need to load it twice
 })

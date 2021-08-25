@@ -65,6 +65,7 @@ xAdmin.Config.PowerlevelPermissions = {
 	["strip"] 		= 70,
 	["give"] 		= 70,
 	["help"]		= 0,
+	["extrahelp"]	= 0,
 
 	-- Addon: xWarn --
 	["warn"]		= 30,

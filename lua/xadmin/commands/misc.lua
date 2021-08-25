@@ -39,12 +39,4 @@ xAdmin.Core.RegisterCommand("steamid", "Gets a user's SteamID64", xAdmin.Config.
 	end
 
 	xAdmin.Core.Msg({target, "'s SteamID: " .. target:SteamID64()}, admin)
-end)
-
-xAdmin.Core.RegisterCommand("sid", "Alias of steamid", xAdmin.Config.PowerlevelPermissions["steamid"], function(admin, args)
-	xAdmin.Commands["steamid"].func(admin, args)
-end)
-
-xAdmin.Core.RegisterCommand("id", "Alias of steamid", xAdmin.Config.PowerlevelPermissions["steamid"], function(admin, args)
-	xAdmin.Commands["steamid"].func(admin, args)
-end)
+end, {"sid", "id"})

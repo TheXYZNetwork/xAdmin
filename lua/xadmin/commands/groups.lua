@@ -32,7 +32,7 @@ xAdmin.Core.RegisterCommand("setgroup", "Set a user's group", xAdmin.Config.Powe
 		xAdmin.Database.UpdateUsersGroup(target, xAdmin.Database.Escape(args[2]))
 	end
 	hook.Run("xAdminUsergroupUpdated", target, args[2])
-end)
+end, {"setrank"})
 
 --- #
 --- # GET USERGROUP
@@ -63,4 +63,4 @@ xAdmin.Core.RegisterCommand("getgroup", "Get a user's group", xAdmin.Config.Powe
 			xAdmin.Core.Msg({targetID .. "'s usergroup is: " .. data[1].rank}, admin)
 		end)
 	end
-end)
+end, {"getrank"})

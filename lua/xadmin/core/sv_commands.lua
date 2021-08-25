@@ -1,4 +1,13 @@
-function xAdmin.Core.RegisterCommand(command, desc, power, func)
+function xAdmin.Core.RegisterCommandInternal(cmd, dsc, pwr, fnc)
+	xAdmin.Commands[cmd] = {
+		command = cmd,
+		desc = dsc or "n/a",
+		power = xAdmin.Config.PowerlevelPermissions[cmd] or xAdmin.Config.PowerLevelDefault,
+		func = fnc
+	}
+end
+
+function xAdmin.Core.RegisterCommand(command, desc, power, func, alias)
 	if not command then
 		return
 	end
@@ -7,12 +16,22 @@ function xAdmin.Core.RegisterCommand(command, desc, power, func)
 		return
 	end
 
-	xAdmin.Commands[command] = {
-		command = command,
-		desc = desc or "n/a",
-		power = xAdmin.Config.PowerlevelPermissions[command] or xAdmin.Config.PowerLevelDefault,
-		func = func
-	}
+	// xAdmin.Commands[command] = {
+	// 	command = command,
+	// 	desc = desc or "n/a",
+	// 	power = xAdmin.Config.PowerlevelPermissions[command] or xAdmin.Config.PowerLevelDefault,
+	// 	func = func
+	// }
+	print("[xAdmin] Loading command " .. command .. ".")
+	xAdmin.Core.RegisterCommandInternal(command, desc, power, func)
+
+	if alias then
+		if not istable(alias) then return end
+		for k, v in pairs(alias) do
+			xAdmin.Core.RegisterCommandInternal(v, desc, power, func)
+			print("", "Alias Registered: " .. v)
+		end
+	end
 end
 function xAdmin.Core.IsCommand(arg)
 	return xAdmin.Commands[arg] or false

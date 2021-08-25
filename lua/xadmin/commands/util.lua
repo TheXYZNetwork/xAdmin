@@ -124,11 +124,7 @@ xAdmin.Core.RegisterCommand("health", "Set a user's health", xAdmin.Config.Power
 	end -- Remove
 
 	xAdmin.Core.Msg({xAdmin.Config.ColorLogText, "Unable to determine what operation to use with the value you specified."}, admin)
-end)
-
-xAdmin.Core.RegisterCommand("hp", "Alias for health", xAdmin.Config.PowerlevelPermissions["health"], function(admin, args)
-	xAdmin.Commands["health"].func(admin, args)
-end)
+end, {"hp"})
 
 --- #
 --- # ARMOR
@@ -220,7 +216,7 @@ xAdmin.Core.RegisterCommand("armor", "Set a user's armor", xAdmin.Config.Powerle
 	end -- Remove
 
 	xAdmin.Core.Msg({xAdmin.Config.ColorLogText, "Unable to determine what operation to use with the value you specified."}, admin)
-end)
+end, {"ap"})
 
 --- #
 --- # GOD
@@ -280,11 +276,7 @@ xAdmin.Core.RegisterCommand("slay", "Kill a user", xAdmin.Config.PowerlevelPermi
 
 	target:Kill()
 	xAdmin.Core.Msg({admin, " has slayed ", target})
-end)
-
-xAdmin.Core.RegisterCommand("kill", "Alias for slay", xAdmin.Config.PowerlevelPermissions["slay"], function(admin, args)
-	xAdmin.Commands["slay"].func(admin, args)
-end)
+end, {"kill"})
 
 --- #
 --- # REVIVE
@@ -312,7 +304,7 @@ xAdmin.Core.RegisterCommand("revive", "Revive a user", xAdmin.Config.PowerlevelP
 	target:Spawn()
 	target:SetPos(deathPos)
 	xAdmin.Core.Msg({admin, " has revived ", target})
-end)
+end, {"rev"})
 
 --- #
 --- # RESPAWN
@@ -332,7 +324,7 @@ xAdmin.Core.RegisterCommand("respawn", "Respawn a user", xAdmin.Config.Powerleve
 
 	target:Spawn()
 	xAdmin.Core.Msg({admin, " has respawned ", target})
-end)
+end, {"res"})
 
 --- #
 --- # STRIP
@@ -352,10 +344,7 @@ xAdmin.Core.RegisterCommand("strip", "Strip a user", xAdmin.Config.PowerlevelPer
 
 	target:StripWeapons()
 	xAdmin.Core.Msg({admin, " has stripped ", target})
-end)
-xAdmin.Core.RegisterCommand("stripweapons", "Alias for strip", xAdmin.Config.PowerlevelPermissions["strip"], function(admin, args)
-	xAdmin.Commands["strip"].func(admin, args)
-end)
+end, {"stripweapons"})
 
 --- #
 --- # GIVE
@@ -375,10 +364,8 @@ xAdmin.Core.RegisterCommand("give", "Give a user a weapon", xAdmin.Config.Powerl
 
 	target:Give(args[2] or "weapon_357")
 	xAdmin.Core.Msg({admin, " has given ", target, " a ", Color(138, 43, 226), args[2] or "weapon_357"})
-end)
-xAdmin.Core.RegisterCommand("giveweapon", "Alias for give", xAdmin.Config.PowerlevelPermissions["give"], function(admin, args)
-	xAdmin.Commands["give"].func(admin, args)
-end)
+end, {"giveweapon"})
+
 -- xAdmin.CommandCache
 xAdmin.Core.RegisterCommand("help", "Get help with the addon.", xAdmin.Config.PowerlevelPermissions["help"], function(admin, args)
 	local str = ""
