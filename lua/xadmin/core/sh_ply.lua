@@ -38,6 +38,7 @@ end
 
 function ply:SetUserGroup(group)
 	if CLIENT then return false end
+	if (group == xAdmin.Config.DefaultGroup) then return end
 
 	if CAMI then
 		CAMI.SignalUserGroupChanged(self, xAdmin.Users[self:SteamID64()], group, "xAdminGithub")
