@@ -22,6 +22,8 @@ if SERVER then
 	AddCSLuaFile("xadmin/_config/sh_permissions.lua")
 	include("xadmin/_config/sh_permissions.lua")
 
+	include("xadmin/_config/sv_mysql_config.lua")
+
 	include("xadmin/core/sv_db.lua")
 else
 	include("xadmin/_config/sh_permissions.lua")
