@@ -374,7 +374,7 @@ xAdmin.Core.RegisterCommand("help", "Get help with the addon.", xAdmin.Config.Po
 		str = (str == "") and v.command or str .. ", " .. v.command
 	end
 
-	xAdmin.Core.Msg({"You have access to the following commands: " .. str}, target)
+	xAdmin.Core.Msg({"You have access to the following commands: " .. str}, admin)
 end)
 
 xAdmin.Core.RegisterCommand("extrahelp", "Get more advanced help with the addon.", xAdmin.Config.PowerlevelPermissions["help"], function(admin, args)
@@ -384,6 +384,6 @@ xAdmin.Core.RegisterCommand("extrahelp", "Get more advanced help with the addon.
 		str = str .. "\n" .. v.command .. " - " .. v.desc
 	end
 
-	xAdmin.Core.Msg({"You have access to the following commands: " .. str}, target)
-	xAdmin.Core.Msg({"Check console for a better view of the commands."}, target)
+	xAdmin.Core.Msg({"You have access to the following commands: " .. str}, admin)
+	xAdmin.Core.Msg({"Check console for a better view of the commands."}, admin)
 end)
