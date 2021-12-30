@@ -101,7 +101,17 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "kierancrossley",
+      "name": "kieran crossley",
+      "avatar_url": "https://avatars.githubusercontent.com/u/47427240?v=4",
+      "profile": "https://steamcommunity.com/id/kieraann/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
-  "contributorsPerLine": 7
+  "contributorsPerLine": 7,
+  "skipCi": true
 }
