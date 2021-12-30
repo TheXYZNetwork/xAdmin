@@ -175,27 +175,3 @@ function xAdmin.Core.Msg(args, target)
 
 	MsgC("\n")
 end
-
---
--- Prop Limit
---
-if xAdmin.Config.PropLimit then
-	hook.Add("PlayerSpawnProp", "xAdminPropLimit", function(ply, model)
-		local count = ply:GetCount("props") + 1
-		local limit = ply:GetGroupTable().proplimit or xAdmin.Config.DefaultPropLimit
-
-		if limit == -1 then
-			return true
-		end
-
-		if count > limit then xAdmin.Core.Msg({string.format("You have reached your prop limit of %s/%s", limit, limit)}, ply) return false end
-	end)
-
-	hook.Add("PlayerSpawnedProp", "xAdminPropLimitNotify", function(ply, model)
-		local count = ply:GetCount("props") + 1
-		local limit = ply:GetGroupTable().proplimit or xAdmin.Config.DefaultPropLimit
-		if not xAdmin.Config.PropLimitNotify then return end
-
-		xAdmin.Core.Msg({string.format("You have spawned a prop. You're now at %s/%s", count, (limit == -1) and xAdmin.Config.PropLimitInfinText or limit) }, ply)
-	end)
-end
