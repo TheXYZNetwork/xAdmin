@@ -38,6 +38,12 @@ hook.Add("PlayerDisconnected", "xAdminDisconnectPlayerRank", function(ply)
 	xAdmin.AdminChat[ply:SteamID64()] = nil
 end)
 
+hook.Add("PostGamemodeLoaded", "xAdminRemoveIncompatibility", function()
+	-- This is used internally by gmod to load the ranks from the users.txt file. This causes xAdmin's ranks to be reset.
+	-- There is no reason to be using the users.txt file when you have a replacement admin system like this installed.
+	hook.Remove("PlayerInitialSpawn", "PlayerAuthSpawn")
+end)
+
 function xAdmin.Core.GetUser(info, admin)
 	if info == "" then
 		return nil
