@@ -33,18 +33,6 @@ print([[
 --------------------------------------------------------------
 xAdmin - R.I.P PoliceRP.xyz
 --------------------------------------------------------------
-Contributers to xAdmin in order of commits:
-https://github.com/owainjones74 | 63
-https://github.com/MilkGames | 12
-https://github.com/realpack | 3
-https://github.com/ExtReMLapin | 2
-https://github.com/DrPepperG | 2
-https://github.com/Livaco | 2
-https://github.com/LivacoNew | 1
-https://github.com/NoSharp | 1
-https://github.com/Roni-sl | 1
---------------------------------------------------------------
-
 ]])
 
 xAdmin.Core.Version = "1.5"
