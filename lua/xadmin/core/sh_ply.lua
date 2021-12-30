@@ -45,6 +45,7 @@ function ply:SetUserGroup(group)
 	end
 
 	xAdmin.Users[self:SteamID64()] = group
+	self:SetNWString("UserGroup", group) -- Implement the original SetUserGroup functionality
 
 	if self:HasPower(xAdmin.Config.AdminChat) then
 		xAdmin.AdminChat[self:SteamID64()] = self
