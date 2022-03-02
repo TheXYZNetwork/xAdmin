@@ -4,6 +4,7 @@
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 A free and basic administration system for Garry's Mod.
 
+If you're looking for a "Premium" admin mod that has a menu and is a lot less perpose built, your best bet is [SAM](https://www.gmodstore.com/market/view/sam). It's the best paid admin mod with a menu.
 
 ## What is xAdmin?
 xAdmin is a lightweight and simplistic administration tool made with the intent to fit the gap that is currently made by these heavy and feature rich administation systems currently available on Garry's Mod. xAdmin tries to be lightweight and simplistic by only providing the core features needed. xAdmin doesn't even have a User Interface, it is 100% chat/console driven 
