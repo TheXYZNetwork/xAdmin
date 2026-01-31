@@ -141,6 +141,11 @@ function xAdmin.Core.FormatArguments(args)
 		args = xAdmin.Core.FormatArguments(args)
 	end
 
+	
+	for k, v in pairs(args) do
+		args[k] = string.Replace(v, '"', '')
+	end
+
 	return args
 end
 

@@ -43,7 +43,7 @@ end)
 --- #
 --- # FREEZE
 --- #
-xAdmin.Core.RegisterCommand("freeze", "Freeze a user", xAdmin.Config.PowerlevelPermissions["freeze"], function(admin, args)
+xAdmin.Core.RegisterCommand("freeze", "Freeze a user", xAdmin.Config.PowerlevelPermissions["freeze"], function(admin, args)	
 	if not args or not args[1] then
 		return
 	end

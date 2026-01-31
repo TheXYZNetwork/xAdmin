@@ -61,7 +61,6 @@ concommand.Add("xadmin", function(ply, cmd, args, argStr)
 		return
 	end
 		
-
 	local formattedArgs = xAdmin.Core.FormatArguments(string.Explode(" ", argStr))
 
 	table.remove(formattedArgs, 1)
